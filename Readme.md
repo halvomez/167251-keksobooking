@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Алексей Харитонов](https://up.htmlacademy.ru/javascript/10/user/167251).
-* Наставник: `Неизвестно`.
+* Наставник: [Денис Верхотуров](https://htmlacademy.ru/profile/id56756).
 
 ---
 
