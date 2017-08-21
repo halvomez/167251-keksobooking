@@ -1,19 +1,31 @@
 'use strict';
 
-var arrAdverts = [8];
+var arrAdverts = [];
 
-function randomAdverts() {
-  var adverts = {
+var arrAvatar = [];
+var avatarNumber = 1;
+for (var j = 0; j < 8; j++) {
+  arrAvatar[j] = 'img/avatars/user0' + avatarNumber + '.png';
+  avatarNumber++;
+}
+
+var countArrTitle = 0;
+var countArrAuthor = 0;
+
+var arrTitle = ['Большая уютная квартира', 'Маленькая неуютная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгало по колено в воде'];
+
+for (var i = 0; i < 8; i++) {
+  arrAdverts[i] = {
     'author': {
-      'avatar': []
+      'avatar': arrAvatar[countArrAuthor]
     },
     'location': {
       'x': calcRandom(900, 100),
       'y': calcRandom(500, 100)
     },
     'offer': {
-      'title': '',
-      'address': '{{location.x}}, {{location.y}}',
+      'title': arrTitle[countArrTitle],
+      'address': 'location.x, location.y',
       'price': calcRandom(1000000, 1000),
       'type': ['flat', 'house', 'bungalo'],
       'rooms': calcRandom(5, 1),
@@ -25,7 +37,8 @@ function randomAdverts() {
       'photos': []
     }
   };
-  return adverts;
+  countArrAuthor++;
+  countArrTitle++;
 }
 
 function calcRandom(max, min) {
@@ -33,8 +46,4 @@ function calcRandom(max, min) {
   return random;
 }
 
-for (var i = 0; i < 8; i++) {
-  arrAdverts[i] = randomAdverts();
-
-}
-console.log(arrAdverts[1]);
+console.log(arrAdverts);
