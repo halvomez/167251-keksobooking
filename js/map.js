@@ -46,4 +46,20 @@ function calcRandom(max, min) {
   return random;
 }
 
-console.log(arrAdverts);
+var randomPin = document.createElement('div');
+
+document.body.appendChild(randomPin);
+
+
+/*
+for (var l = 0; l < arrAdverts.length; l++) {
+  randomPin.innerHTML = '<div class = "pin" style = "left: ' + arrAdverts[l].location.x + 'px; top: ' + arrAdverts[l].location.y + 'px">' +
+      '<img src="sd" class = "rounded" width="40" height="40">' +
+      '</div>';
+  document.body.appendChild(randomPin);
+}
+
+console.log(arrAdverts[1].location.x);
+*/
+
+
