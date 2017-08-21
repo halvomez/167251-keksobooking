@@ -2,53 +2,43 @@
 
 var arrAdverts = [];
 
-var arrAvatar = [];
-var avatarNumber = 1;
-for (var j = 0; j < 8; j++) {
-  arrAvatar[j] = 'img/avatars/user0' + avatarNumber + '.png';
-  avatarNumber++;
-}
-
-var countArrTitle = 0;
-var countArrAuthor = 0;
-
 var arrTitle = ['Большая уютная квартира', 'Маленькая неуютная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгало по колено в воде'];
 
 for (var i = 0; i < 8; i++) {
-  arrAdverts[i] = {
+  arrAdverts.push({
     'author': {
-      'avatar': arrAvatar[countArrAuthor]
+      'avatar': 'img/avatars/user0' + (i + 1) + '.png'
     },
     'location': {
-      'x': calcRandom(900, 100),
-      'y': calcRandom(500, 100)
+      'x': Math.floor(getRandom(900, 100)),
+      'y': Math.floor(getRandom(500, 100))
     },
     'offer': {
-      'title': arrTitle[countArrTitle],
+      'title': arrTitle[i],
       'address': 'location.x, location.y',
-      'price': calcRandom(1000000, 1000),
+      'price': Math.floor(getRandom(1000000, 1000)),
       'type': ['flat', 'house', 'bungalo'],
-      'rooms': calcRandom(5, 1),
-      'guests': calcRandom(10, 1),
+      'rooms': Math.floor(getRandom(5, 1)),
+      'guests': Math.floor(getRandom(10, 1)),
       'checkin': ['12:00', '13:00', '14:00'],
       'checkout': ['12:00', '13:00', '14:00'],
       'features': ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'],
       'description': '',
       'photos': []
     }
-  };
-  countArrAuthor++;
-  countArrTitle++;
+  });
 }
 
-function calcRandom(max, min) {
-  var random = Math.floor(Math.random() * (max - min + 1)) + min;
-  return random;
+function getRandom(max, min) {
+  return (Math.random() * (max - min)) + min;
 }
 
-var randomPin = document.createElement('div');
+console.log(arrAdverts);
 
-document.body.appendChild(randomPin);
+
+/* var randomPin = document.createElement('div');
+
+document.body.appendChild(randomPin);*/
 
 
 /*
