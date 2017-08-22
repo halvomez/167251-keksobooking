@@ -43,5 +43,20 @@ for (var l = 0; l < arrAdverts.length; l++) {
       '</div>';
   fragment.appendChild(randomPin);
 }
-pinMap.appendChild(fragment);
+pinMap.appendChild(fragment); // рандомные метки
 
+
+// 4 пункт
+
+var lodgeTemplate = document.querySelector('#lodge-template').content.querySelector('.dialog-panel');
+
+lodgeTemplate.querySelector('.lodge__title').innerHTML = arrAdverts[0].offer.title;
+lodgeTemplate.querySelector('.lodge__address').innerHTML = arrAdverts[0].offer.address;
+lodgeTemplate.querySelector('.offer.price').innerHTML = arrAdverts[0].offer.price + '&#x20bd/ночь';
+lodgeTemplate.querySelector('.lodge__type').innerHTML = arrAdverts[0].offer.type[1];
+lodgeTemplate.querySelector('.lodge__rooms-and-guest').innerHTML = 'Для ' + arrAdverts[0].offer.guests + ' гостей в ' + arrAdverts[0].offer.rooms + ' комнатах';
+lodgeTemplate.querySelector('.lodge__checkin-time').innerHTML = 'Заезд после ' + arrAdverts[0].offer.checkin + ', выезд до ' + arrAdverts[0].offer.checkout;
+lodgeTemplate.querySelector('.lodge__features').innerHTML = '<span class ="' + arrAdverts[0].offer.features[1] + ' feature__image">';
+lodgeTemplate.querySelector('.lodge__description').innerHTML = arrAdverts[0].offer.description;
+
+pinMap.appendChild(lodgeTemplate);
