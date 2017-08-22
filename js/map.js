@@ -33,23 +33,15 @@ function getRandom(max, min) {
   return (Math.random() * (max - min)) + min;
 }
 
-console.log(arrAdverts);
+var pinMap = document.querySelector('.tokyo__pin-map');
+var fragment = document.createDocumentFragment();
 
-
-/* var randomPin = document.createElement('div');
-
-document.body.appendChild(randomPin);*/
-
-
-/*
 for (var l = 0; l < arrAdverts.length; l++) {
+  var randomPin = document.createElement('div');
   randomPin.innerHTML = '<div class = "pin" style = "left: ' + arrAdverts[l].location.x + 'px; top: ' + arrAdverts[l].location.y + 'px">' +
-      '<img src="sd" class = "rounded" width="40" height="40">' +
+      '<img src="' + arrAdverts[l].author.avatar + '" class = "rounded" width="40" height="40">' +
       '</div>';
-  document.body.appendChild(randomPin);
+  fragment.appendChild(randomPin);
 }
-
-console.log(arrAdverts[1].location.x);
-*/
-
+pinMap.appendChild(fragment);
 
