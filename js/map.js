@@ -10,7 +10,7 @@ for (var i = 0; i < 8; i++) {
       'avatar': 'img/avatars/user0' + (i + 1) + '.png'
     },
     'location': {
-      'x': Math.floor(getRandom(900, 100)),
+      'x': Math.floor(getRandom(900, 300)),
       'y': Math.floor(getRandom(500, 100))
     },
     'offer': {
@@ -33,12 +33,15 @@ function getRandom(max, min) {
   return (Math.random() * (max - min)) + min;
 }
 
+var pinMapWidth = 56;
+var pinMapHeight = 75;
+
 var pinMap = document.querySelector('.tokyo__pin-map');
 var fragment = document.createDocumentFragment();
 
 for (var l = 0; l < arrAdverts.length; l++) {
   var randomPin = document.createElement('div');
-  randomPin.innerHTML = '<div class = "pin" style = "left: ' + arrAdverts[l].location.x + 'px; top: ' + arrAdverts[l].location.y + 'px">' +
+  randomPin.innerHTML = '<div class = "pin" style = "left: ' + (arrAdverts[l].location.x - pinMapWidth / 2) + 'px; top: ' + (arrAdverts[l].location.y - pinMapHeight) + 'px">' +
       '<img src="' + arrAdverts[l].author.avatar + '" class = "rounded" width="40" height="40">' +
       '</div>';
   fragment.appendChild(randomPin);
