@@ -48,15 +48,34 @@ pinMap.appendChild(fragment); // рандомные метки
 
 // 4 пункт
 
-var lodgeTemplate = document.querySelector('#lodge-template').content.querySelector('.dialog-panel');
+var numberOfAdvert = 2;
+var lodgeTemplate = document.querySelector('#lodge-template').content.querySelector('.dialog__panel');
 
-lodgeTemplate.querySelector('.lodge__title').innerHTML = arrAdverts[0].offer.title;
-lodgeTemplate.querySelector('.lodge__address').innerHTML = arrAdverts[0].offer.address;
-lodgeTemplate.querySelector('.offer.price').innerHTML = arrAdverts[0].offer.price + '&#x20bd/ночь';
-lodgeTemplate.querySelector('.lodge__type').innerHTML = arrAdverts[0].offer.type[1];
-lodgeTemplate.querySelector('.lodge__rooms-and-guest').innerHTML = 'Для ' + arrAdverts[0].offer.guests + ' гостей в ' + arrAdverts[0].offer.rooms + ' комнатах';
-lodgeTemplate.querySelector('.lodge__checkin-time').innerHTML = 'Заезд после ' + arrAdverts[0].offer.checkin + ', выезд до ' + arrAdverts[0].offer.checkout;
-lodgeTemplate.querySelector('.lodge__features').innerHTML = '<span class ="' + arrAdverts[0].offer.features[1] + ' feature__image">';
-lodgeTemplate.querySelector('.lodge__description').innerHTML = arrAdverts[0].offer.description;
+lodgeTemplate.querySelector('.lodge__title').innerHTML = arrAdverts[numberOfAdvert].offer.title;
 
-pinMap.appendChild(lodgeTemplate);
+
+lodgeTemplate.querySelector('.lodge__address').innerHTML = arrAdverts[numberOfAdvert].offer.address;
+lodgeTemplate.querySelector('.lodge__price').innerHTML = arrAdverts[numberOfAdvert].offer.price + ' &#x20bd/ночь';
+
+lodgeTemplate.querySelector('.lodge__type').innerHTML = arrAdverts[numberOfAdvert].offer.type[numberOfAdvert];
+
+lodgeTemplate.querySelector('.lodge__rooms-and-guests').innerHTML = 'Для ' + arrAdverts[numberOfAdvert].offer.guests + ' гостей в ' + arrAdverts[numberOfAdvert].offer.rooms + ' комнатах';
+lodgeTemplate.querySelector('.lodge__checkin-time').innerHTML = 'Заезд после ' + arrAdverts[numberOfAdvert].offer.checkin + ', выезд до ' + arrAdverts[numberOfAdvert].offer.checkout;
+
+for (var k = 1; k <= 5; k++) {
+  lodgeTemplate.querySelector('.lodge__features').innerHTML += '<span class ="feature__image--' + arrAdverts[numberOfAdvert].offer.features[k] + ' feature__image">';
+}
+
+lodgeTemplate.querySelector('.lodge__description').innerHTML = arrAdverts[numberOfAdvert].offer.description;
+console.log(lodgeTemplate);
+
+lodgeTemplate.querySelector('.lodge__description').innerHTML = arrAdverts[numberOfAdvert].offer.description;
+
+
+
+var oldDialogPanel = document.querySelector('.dialog__panel');
+var parentDialogPanel = oldDialogPanel.parentNode;
+parentDialogPanel.replaceChild(lodgeTemplate, oldDialogPanel);
+
+document.querySelector('.dialog__title').innerHTML = '<div class="dialog__title"><img src="' + arrAdverts[numberOfAdvert].author.avatar + '" alt="Avatar" width="70" height="70">' +
+    '<a href="#" class="dialog__close"><img src="img/close.svg" alt="close" width="22" height="22"></a>' + '</div>';
