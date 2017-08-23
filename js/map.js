@@ -10,16 +10,16 @@ for (var i = 0; i < 8; i++) {
       'avatar': 'img/avatars/user0' + (i + 1) + '.png'
     },
     'location': {
-      'x': Math.floor(getRandom(900, 300)),
-      'y': Math.floor(getRandom(500, 100))
+      'x': getRandom(900, 300),
+      'y': getRandom(500, 100)
     },
     'offer': {
       'title': arrTitle[i],
       'address': 'location.x, location.y',
-      'price': Math.floor(getRandom(1000000, 1000)),
+      'price': getRandom(1000000, 1000),
       'type': ['flat', 'house', 'bungalo'],
-      'rooms': Math.floor(getRandom(5, 1)),
-      'guests': Math.floor(getRandom(10, 1)),
+      'rooms': getRandom(5, 1),
+      'guests': getRandom(10, 1),
       'checkin': ['12:00', '13:00', '14:00'],
       'checkout': ['12:00', '13:00', '14:00'],
       'features': ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'],
@@ -30,7 +30,7 @@ for (var i = 0; i < 8; i++) {
 }
 
 function getRandom(max, min) {
-  return (Math.random() * (max - min)) + min;
+  return Math.floor(Math.random() * (max - min)) + min;
 }
 
 var pinMapWidth = 56;
@@ -51,7 +51,11 @@ pinMap.appendChild(fragment); // рандомные метки
 
 // 4 пункт
 
-var numberOfAdvert = 2;
+var numberOfAdvert = 0;
+var typeRandom = getRandom(arrAdverts[numberOfAdvert].offer.type.length, 0);
+var checkInRandom = getRandom(arrAdverts[numberOfAdvert].offer.checkin.length, 0);
+var checkOutRandom = getRandom(arrAdverts[numberOfAdvert].offer.checkout.length, 0);
+
 var lodgeTemplate = document.querySelector('#lodge-template').content.querySelector('.dialog__panel');
 
 lodgeTemplate.querySelector('.lodge__title').innerHTML = arrAdverts[numberOfAdvert].offer.title;
@@ -60,21 +64,23 @@ lodgeTemplate.querySelector('.lodge__title').innerHTML = arrAdverts[numberOfAdve
 lodgeTemplate.querySelector('.lodge__address').innerHTML = arrAdverts[numberOfAdvert].offer.address;
 lodgeTemplate.querySelector('.lodge__price').innerHTML = arrAdverts[numberOfAdvert].offer.price + ' &#x20bd/ночь';
 
-lodgeTemplate.querySelector('.lodge__type').innerHTML = arrAdverts[numberOfAdvert].offer.type[numberOfAdvert];
+if (typeRandom === 0) {
+  lodgeTemplate.querySelector('.lodge__type').innerHTML = 'Квартира';
+} if (typeRandom === 1) {
+  lodgeTemplate.querySelector('.lodge__type').innerHTML = 'Дом';
+} if (typeRandom === 2) {
+  lodgeTemplate.querySelector('.lodge__type').innerHTML = 'Бунгало';
+}
+
 
 lodgeTemplate.querySelector('.lodge__rooms-and-guests').innerHTML = 'Для ' + arrAdverts[numberOfAdvert].offer.guests + ' гостей в ' + arrAdverts[numberOfAdvert].offer.rooms + ' комнатах';
-lodgeTemplate.querySelector('.lodge__checkin-time').innerHTML = 'Заезд после ' + arrAdverts[numberOfAdvert].offer.checkin + ', выезд до ' + arrAdverts[numberOfAdvert].offer.checkout;
+lodgeTemplate.querySelector('.lodge__checkin-time').innerHTML = 'Заезд после ' + arrAdverts[numberOfAdvert].offer.checkin[checkInRandom] + ', выезд до ' + arrAdverts[numberOfAdvert].offer.checkout[checkOutRandom];
 
-for (var k = 1; k <= 5; k++) {
+for (var k = 0; k < arrAdverts[numberOfAdvert].offer.features.length; k++) {
   lodgeTemplate.querySelector('.lodge__features').innerHTML += '<span class ="feature__image--' + arrAdverts[numberOfAdvert].offer.features[k] + ' feature__image">';
 }
 
 lodgeTemplate.querySelector('.lodge__description').innerHTML = arrAdverts[numberOfAdvert].offer.description;
-console.log(lodgeTemplate);
-
-lodgeTemplate.querySelector('.lodge__description').innerHTML = arrAdverts[numberOfAdvert].offer.description;
-
-
 
 var oldDialogPanel = document.querySelector('.dialog__panel');
 var parentDialogPanel = oldDialogPanel.parentNode;
@@ -82,3 +88,5 @@ parentDialogPanel.replaceChild(lodgeTemplate, oldDialogPanel);
 
 document.querySelector('.dialog__title').innerHTML = '<div class="dialog__title"><img src="' + arrAdverts[numberOfAdvert].author.avatar + '" alt="Avatar" width="70" height="70">' +
     '<a href="#" class="dialog__close"><img src="img/close.svg" alt="close" width="22" height="22"></a>' + '</div>';
+
+console.log(lodgeTemplate);
