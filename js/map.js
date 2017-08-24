@@ -56,10 +56,7 @@ for (var l = 0; l < arrAdverts.length; l++) {
       '</div>';
   fragment.appendChild(randomPin);
 }
-pinMap.appendChild(fragment); // рандомные метки
-
-
-// 4 пункт
+pinMap.appendChild(fragment);
 
 var numberOfAdvert = 0;
 var typeRandom = getRandom(arrAdverts[numberOfAdvert].offer.type.length, 0);
