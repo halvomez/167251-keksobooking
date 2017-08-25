@@ -98,24 +98,26 @@ document.querySelector('.dialog__title').innerHTML = '<div class="dialog__title"
     '<img src="' + arrAdverts[numberOfAdvert].author.avatar + '" alt="Avatar" width="70" height="70">' +
     '<a href="#" class="dialog__close"><img src="img/close.svg" alt="close" width="22" height="22"></a>' + '</div>';
 
+
 var pinAll = document.querySelectorAll('.pin');
 
-for (i = 0; i < pinAll.length; i++) {
-  pinAll[i].classList.remove('pin-active');
-  pinAll[i].addEventListener('click', function () {
-    this.classList.add('pin--active');
-  });
-}
-
-var pinActive = document.querySelector('.pin--active');
 var dialogClose = document.querySelector('.dialog__close');
 var dialog = document.querySelector('.dialog');
+
 dialogClose.addEventListener('click', function () {
   dialog.classList.add('hidden');
-  if (pinActive) {
-    pinActive.classList.remove('pin--active');
-  }
-}
-);
+});
 
+var pinClicked;
+var pinActive = function (event) {
+  if (pinClicked) {
+    pinClicked.classList.remove('pin--active');
+  }
+  pinClicked = event.currentTarget;
+  pinClicked.classList.add('pin--active');
+};
+
+for (i = 0; i < pinAll.length; i++) {
+  pinAll[i].addEventListener('click', pinActive);
+}
 
