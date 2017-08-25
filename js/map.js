@@ -100,9 +100,9 @@ document.querySelector('.dialog__title').innerHTML = '<div class="dialog__title"
 
 
 var pinAll = document.querySelectorAll('.pin');
-
 var dialogClose = document.querySelector('.dialog__close');
 var dialog = document.querySelector('.dialog');
+dialog.classList.add('hidden');
 
 dialogClose.addEventListener('click', function () {
   dialog.classList.add('hidden');
@@ -115,6 +115,8 @@ var pinActive = function (event) {
   }
   pinClicked = event.currentTarget;
   pinClicked.classList.add('pin--active');
+  dialog.classList.remove('hidden');
+  console.log(event);
 };
 
 for (i = 0; i < pinAll.length; i++) {
