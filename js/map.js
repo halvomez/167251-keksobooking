@@ -102,6 +102,9 @@ var pinAll = document.querySelectorAll('.pin');
 
 for (i = 0; i < pinAll.length; i++) {
   pinAll[i].classList.remove('pin-active');
+  pinAll[i].addEventListener('click', function () {
+    this.classList.add('pin--active');
+  });
 }
 
 var pinActive = document.querySelector('.pin--active');
