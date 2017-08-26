@@ -52,12 +52,11 @@ for (var l = 0; l < arrAdverts.length; l++) {
   var randomPin = document.createElement('div');
   randomPin.innerHTML = '<div class = "pin" style = "left: ' + (arrAdverts[l].location.x - pinMapWidth / 2) + 'px;' +
       ' top: ' + (arrAdverts[l].location.y - pinMapHeight) + 'px">' +
-      '<img src="' + arrAdverts[l].author.avatar + '" class = "rounded" width="40" height="40">' +
+      '<img src="' + arrAdverts[l].author.avatar + '" class = "rounded pin--create pin--' + l + '" width="40" height="40">' +
       '</div>';
   fragment.appendChild(randomPin);
 }
 pinMap.appendChild(fragment);
-
 
 function showAdwert(numberOfAdvert) {
 
@@ -102,7 +101,7 @@ function showAdwert(numberOfAdvert) {
 
 }
 
-var pinAll = document.querySelectorAll('.pin');
+var pinAll = document.querySelectorAll('.pin--create');
 var dialogClose = document.querySelector('.dialog__close');
 var dialog = document.querySelector('.dialog');
 dialog.classList.add('hidden');
@@ -117,9 +116,13 @@ var pinActive = function (event) {
     pinClicked.classList.remove('pin--active');
   }
   pinClicked = event.currentTarget;
+  for (i = 0; i < pinAll.length; i++) {
+    if (pinClicked.classList.contains('pin--' + i)) {
+      showAdwert(i);
+    }
+  }
   pinClicked.classList.add('pin--active');
   dialog.classList.remove('hidden');
-  console.log(event);
 };
 
 for (i = 0; i < pinAll.length; i++) {
@@ -127,4 +130,3 @@ for (i = 0; i < pinAll.length; i++) {
 }
 
 
-showAdwert(1);
