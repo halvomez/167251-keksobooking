@@ -50,9 +50,9 @@ var fragment = document.createDocumentFragment();
 
 for (var l = 0; l < arrAdverts.length; l++) {
   var randomPin = document.createElement('div');
-  randomPin.innerHTML = '<div class = "pin" style = "left: ' + (arrAdverts[l].location.x - pinMapWidth / 2) + 'px;' +
+  randomPin.innerHTML = '<div class = "pin pin--create pin--' + l + '" style = "left: ' + (arrAdverts[l].location.x - pinMapWidth / 2) + 'px;' +
       ' top: ' + (arrAdverts[l].location.y - pinMapHeight) + 'px">' +
-      '<img src="' + arrAdverts[l].author.avatar + '" class = "rounded pin--create pin--' + l + '" width="40" height="40">' +
+      '<img src="' + arrAdverts[l].author.avatar + '" class = "rounded" width="40" height="40">' +
       '</div>';
   fragment.appendChild(randomPin);
 }
@@ -65,8 +65,6 @@ function showAdwert(numberOfAdvert) {
   var typeRandom = getRandom(arrAdverts[numberOfAdvert].offer.type.length, 0);
   var checkInRandom = getRandom(arrAdverts[numberOfAdvert].offer.checkin.length, 0);
   var checkOutRandom = getRandom(arrAdverts[numberOfAdvert].offer.checkout.length, 0);
-
-  console.log(lodgeTemplate);
 
   lodgeTemplate.querySelector('.lodge__title').innerHTML = arrAdverts[numberOfAdvert].offer.title;
   lodgeTemplate.querySelector('.lodge__address').innerHTML = arrAdverts[numberOfAdvert].offer.address;
@@ -104,13 +102,7 @@ function showAdwert(numberOfAdvert) {
 }
 
 var pinAll = document.querySelectorAll('.pin--create');
-var dialogClose = document.querySelector('.dialog__close');
-var dialog = document.querySelector('.dialog');
-dialog.classList.add('hidden');
 
-dialogClose.addEventListener('click', function () {
-  dialog.classList.add('hidden');
-});
 
 var pinClicked;
 var pinActive = function (event) {
@@ -131,4 +123,12 @@ for (i = 0; i < pinAll.length; i++) {
   pinAll[i].addEventListener('click', pinActive);
 }
 
+var dialog = document.querySelector('.dialog');
+dialog.classList.add('hidden');
+/*
+var dialogClose = document.querySelector('.dialog__close');
 
+
+dialogClose.addEventListener('click', function () {
+  dialog.classList.add('hidden');
+});*/
