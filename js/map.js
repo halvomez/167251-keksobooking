@@ -58,13 +58,15 @@ for (var l = 0; l < arrAdverts.length; l++) {
 }
 pinMap.appendChild(fragment);
 
+var lodgeTemplate = document.querySelector('#lodge-template').content.querySelector('.dialog__panel');
+
 function showAdwert(numberOfAdvert) {
 
   var typeRandom = getRandom(arrAdverts[numberOfAdvert].offer.type.length, 0);
   var checkInRandom = getRandom(arrAdverts[numberOfAdvert].offer.checkin.length, 0);
   var checkOutRandom = getRandom(arrAdverts[numberOfAdvert].offer.checkout.length, 0);
 
-  var lodgeTemplate = document.querySelector('#lodge-template').content.querySelector('.dialog__panel');
+  console.log(lodgeTemplate);
 
   lodgeTemplate.querySelector('.lodge__title').innerHTML = arrAdverts[numberOfAdvert].offer.title;
   lodgeTemplate.querySelector('.lodge__address').innerHTML = arrAdverts[numberOfAdvert].offer.address;
