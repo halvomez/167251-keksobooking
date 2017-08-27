@@ -82,8 +82,8 @@ for (var l = 0; l < arrAdverts.length; l++) {
   var randomPin = document.createElement('div');
   randomPin.innerHTML = '<div class = "pin pin--create pin--' + l + '" style = "left: ' +
     (arrAdverts[l].location.x - pinMapWidth / 2) + 'px;' +
-      ' top: ' + (arrAdverts[l].location.y - pinMapHeight) + 'px">' +
-      '<img src="' + arrAdverts[l].author.avatar + '" class = "rounded" width="40" height="40" tabindex="0">' +
+      ' top: ' + (arrAdverts[l].location.y - pinMapHeight) + 'px"  tabindex="0">' +
+      '<img src="' + arrAdverts[l].author.avatar + '" class = "rounded" width="40" height="40">' +
       '</div>';
   fragment.appendChild(randomPin);
 }
@@ -111,7 +111,7 @@ function showAdwert(numberOfAdvert) {
     'Заезд после ' + arrAdverts[numberOfAdvert].offer.checkin +
     ', выезд до ' + arrAdverts[numberOfAdvert].offer.checkout;
 
-  /*  for (var k = 0; k < arrAdverts[numberOfAdvert].offer.features.length; k++) {
+  /*for (var k = 0; k < arrAdverts[numberOfAdvert].offer.features.length; k++) {
     lodgeTemplate.querySelector('.lodge__features').innerHTML +=
       '<span class ="feature__image--' + arrAdverts[numberOfAdvert].offer.features[k] + ' feature__image">';
   }*/
