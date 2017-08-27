@@ -61,11 +61,17 @@ for (var i = 0; i < 8; i++) {
       'guests': getRandom(10, 1),
       'checkin': arrCheckIn[getRandom(arrCheckIn.length, 0)],
       'checkout': arrCheckOut[getRandom(arrCheckOut.length, 0)],
-      'features': arrFeatures,
+      'features': getRandomFeatures(),
       'description': '',
       'photos': []
     }
   });
+}
+
+function getRandomFeatures() {
+  var featuresCopy = arrFeatures.slice(0, arrFeatures.length);
+  featuresCopy.splice(getRandom(arrFeatures.length, 0), getRandom(arrFeatures.length, 0));
+  return featuresCopy;
 }
 
 function getRandom(max, min) {
@@ -186,4 +192,5 @@ function closeEsc() {
     }
   });
 }
+
 
