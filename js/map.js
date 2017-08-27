@@ -166,6 +166,12 @@ function onCloseClick() {
     dialog.classList.add('hidden');
     pinClicked.classList.remove('pin--active');
   });
+  dialogClose.addEventListener('keydown', function (event) {
+    if (event.keyCode === ESC_CODE) {
+      dialog.classList.add('hidden');
+      pinClicked.classList.remove('pin--active');
+    }
+  });
 }
 
 function closeEsc() {
@@ -177,22 +183,3 @@ function closeEsc() {
   });
 }
 
-/*
-function enterActive(event) {
-  if (event.keyCode === ENTER_CODE) {
-    if (pinClicked) {
-      pinClicked.classList.remove('pin--active');
-    }
-    pinClicked = event.currentTarget;
-    for (i = 0; i < pinAll.length; i++) {
-      if (pinClicked.classList.contains('pin--' + i)) {
-        showAdwert(i);
-      }
-    }
-    pinClicked.classList.add('pin--active');
-    dialog.classList.remove('hidden');
-    onCloseClick();
-    closeEsc();
-  }
-}
-*/
