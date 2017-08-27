@@ -59,7 +59,7 @@ for (var i = 0; i < 8; i++) {
       'guests': getRandom(10, 1),
       'checkin': arrCheckIn[getRandom(arrCheckIn.length, 0)],
       'checkout': arrCheckOut[getRandom(arrCheckOut.length, 0)],
-      'features': ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'],
+      'features': arrFeatures.splice(getRandom(arrFeatures.length, 0), getRandom(arrFeatures.length, 0)),
       'description': '',
       'photos': []
     }
@@ -70,6 +70,8 @@ function getRandom(max, min) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+/*
+
 var pinMapWidth = 56;
 var pinMapHeight = 75;
 
@@ -78,7 +80,8 @@ var fragment = document.createDocumentFragment();
 
 for (var l = 0; l < arrAdverts.length; l++) {
   var randomPin = document.createElement('div');
-  randomPin.innerHTML = '<div class = "pin pin--create pin--' + l + '" style = "left: ' + (arrAdverts[l].location.x - pinMapWidth / 2) + 'px;' +
+  randomPin.innerHTML = '<div class = "pin pin--create pin--' + l + '" style = "left: ' +
+    (arrAdverts[l].location.x - pinMapWidth / 2) + 'px;' +
       ' top: ' + (arrAdverts[l].location.y - pinMapHeight) + 'px">' +
       '<img src="' + arrAdverts[l].author.avatar + '" class = "rounded" width="40" height="40">' +
       '</div>';
@@ -108,10 +111,8 @@ function showAdwert(numberOfAdvert) {
     'Заезд после ' + arrAdverts[numberOfAdvert].offer.checkin +
     ', выезд до ' + arrAdverts[numberOfAdvert].offer.checkout;
 
-  for (var k = 0; k < arrAdverts[numberOfAdvert].offer.features.length; k++) {
-    lodgeTemplate.querySelector('.lodge__features').innerHTML +=
+  lodgeTemplate.querySelector('.lodge__features').innerHTML +=
       '<span class ="feature__image--' + arrAdverts[numberOfAdvert].offer.features[k] + ' feature__image">';
-  }
 
   lodgeTemplate.querySelector('.lodge__description').innerHTML = arrAdverts[numberOfAdvert].offer.description;
 
@@ -151,6 +152,7 @@ var dialog = document.querySelector('.dialog');
 dialog.classList.add('hidden');
 var dialogClose = document.querySelector('.dialog__close');
 
+*/
 
 /*
 dialogClose.addEventListener('click', function () {
