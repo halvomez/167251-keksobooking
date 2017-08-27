@@ -109,10 +109,10 @@ function showAdwert(numberOfAdvert) {
     'Заезд после ' + arrAdverts[numberOfAdvert].offer.checkin +
     ', выезд до ' + arrAdverts[numberOfAdvert].offer.checkout;
 
-  for (var k = 0; k < arrAdverts[numberOfAdvert].offer.features.length; k++) {
+  /*  for (var k = 0; k < arrAdverts[numberOfAdvert].offer.features.length; k++) {
     lodgeTemplate.querySelector('.lodge__features').innerHTML +=
       '<span class ="feature__image--' + arrAdverts[numberOfAdvert].offer.features[k] + ' feature__image">';
-  }
+  }*/
 
   lodgeTemplate.querySelector('.lodge__description').innerHTML = arrAdverts[numberOfAdvert].offer.description;
 
@@ -142,6 +142,7 @@ var pinActive = function (event) {
   }
   pinClicked.classList.add('pin--active');
   dialog.classList.remove('hidden');
+  onCloseClick();
 };
 
 for (i = 0; i < pinAll.length; i++) {
@@ -150,12 +151,12 @@ for (i = 0; i < pinAll.length; i++) {
 
 var dialog = document.querySelector('.dialog');
 dialog.classList.add('hidden');
-var dialogClose = document.querySelector('.dialog__close');
 
-
-/*
-dialogClose.addEventListener('click', function () {
-  dialog.classList.add('hidden');
-});
-*/
+function onCloseClick() {
+  var dialogClose = document.querySelector('.dialog__close');
+  dialogClose.addEventListener('click', function () {
+    dialog.classList.add('hidden');
+    pinClicked.classList.remove('pin--active');
+  });
+}
 
