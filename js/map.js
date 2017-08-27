@@ -112,10 +112,13 @@ function showAdwert(numberOfAdvert) {
     'Заезд после ' + arrAdverts[numberOfAdvert].offer.checkin +
     ', выезд до ' + arrAdverts[numberOfAdvert].offer.checkout;
 
-  /* for (var k = 0; k < arrAdverts[numberOfAdvert].offer.features.length; k++) {
+  lodgeTemplate.querySelector('.lodge__features').innerHTML = '';
+  for (var k = 0; k < arrAdverts[numberOfAdvert].offer.features.length; k++) {
+
     lodgeTemplate.querySelector('.lodge__features').innerHTML +=
       '<span class ="feature__image--' + arrAdverts[numberOfAdvert].offer.features[k] + ' feature__image">';
-  }*/
+
+  }
 
   lodgeTemplate.querySelector('.lodge__description').innerHTML = arrAdverts[numberOfAdvert].offer.description;
 
