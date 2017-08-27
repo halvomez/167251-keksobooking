@@ -59,7 +59,7 @@ for (var i = 0; i < 8; i++) {
       'guests': getRandom(10, 1),
       'checkin': arrCheckIn[getRandom(arrCheckIn.length, 0)],
       'checkout': arrCheckOut[getRandom(arrCheckOut.length, 0)],
-      'features': arrFeatures.splice(getRandom(arrFeatures.length, 0), getRandom(arrFeatures.length, 0)),
+      'features': arrFeatures,
       'description': '',
       'photos': []
     }
@@ -69,8 +69,6 @@ for (var i = 0; i < 8; i++) {
 function getRandom(max, min) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
-
-/*
 
 var pinMapWidth = 56;
 var pinMapHeight = 75;
@@ -111,8 +109,10 @@ function showAdwert(numberOfAdvert) {
     'Заезд после ' + arrAdverts[numberOfAdvert].offer.checkin +
     ', выезд до ' + arrAdverts[numberOfAdvert].offer.checkout;
 
-  lodgeTemplate.querySelector('.lodge__features').innerHTML +=
+  for (var k = 0; k < arrAdverts[numberOfAdvert].offer.features.length; k++) {
+    lodgeTemplate.querySelector('.lodge__features').innerHTML +=
       '<span class ="feature__image--' + arrAdverts[numberOfAdvert].offer.features[k] + ' feature__image">';
+  }
 
   lodgeTemplate.querySelector('.lodge__description').innerHTML = arrAdverts[numberOfAdvert].offer.description;
 
@@ -152,7 +152,6 @@ var dialog = document.querySelector('.dialog');
 dialog.classList.add('hidden');
 var dialogClose = document.querySelector('.dialog__close');
 
-*/
 
 /*
 dialogClose.addEventListener('click', function () {
