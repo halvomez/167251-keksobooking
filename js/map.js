@@ -13,6 +13,34 @@ var arrTitles = [
   'Неуютное бунгало по колено в воде'
 ];
 
+var arrFeatures = [
+  'wifi',
+  'dishwasher',
+  'parking',
+  'washer',
+  'elevator',
+  'conditioner'
+];
+
+var arrCheckIn = [
+  '12:00',
+  '13:00',
+  '14:00'
+];
+
+
+var arrCheckOut = [
+  '12:00',
+  '13:00',
+  '14:00'
+];
+
+var arrType = [
+  'flat',
+  'house',
+  'bungalo'
+];
+
 for (var i = 0; i < 8; i++) {
   arrAdverts.push({
     'author': {
@@ -23,14 +51,14 @@ for (var i = 0; i < 8; i++) {
       'y': getRandom(500, 100)
     },
     'offer': {
-      'title': arrTitles[i],
+      'title': arrTitles[getRandom(arrTitles.length, 0)],
       'address': 'location.x, location.y',
       'price': getRandom(1000000, 1000),
-      'type': ['flat', 'house', 'bungalo'],
+      'type': arrType[getRandom(arrType.length, 0)],
       'rooms': getRandom(5, 1),
       'guests': getRandom(10, 1),
-      'checkin': ['12:00', '13:00', '14:00'],
-      'checkout': ['12:00', '13:00', '14:00'],
+      'checkin': arrCheckIn[getRandom(arrCheckIn.length, 0)],
+      'checkout': arrCheckOut[getRandom(arrCheckOut.length, 0)],
       'features': ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'],
       'description': '',
       'photos': []
@@ -62,27 +90,23 @@ var lodgeTemplate = document.querySelector('#lodge-template').content.querySelec
 
 function showAdwert(numberOfAdvert) {
 
-  var typeRandom = getRandom(arrAdverts[numberOfAdvert].offer.type.length, 0);
-  var checkInRandom = getRandom(arrAdverts[numberOfAdvert].offer.checkin.length, 0);
-  var checkOutRandom = getRandom(arrAdverts[numberOfAdvert].offer.checkout.length, 0);
-
   lodgeTemplate.querySelector('.lodge__title').innerHTML = arrAdverts[numberOfAdvert].offer.title;
   lodgeTemplate.querySelector('.lodge__address').innerHTML = arrAdverts[numberOfAdvert].offer.address;
   lodgeTemplate.querySelector('.lodge__price').innerHTML = arrAdverts[numberOfAdvert].offer.price + ' &#x20bd/ночь';
 
-  if (typeRandom === 0) {
+  if (arrAdverts[numberOfAdvert].offer.type === 0) {
     lodgeTemplate.querySelector('.lodge__type').innerHTML = 'Квартира';
-  } if (typeRandom === 1) {
+  } if (arrAdverts[numberOfAdvert].offer.type === 1) {
     lodgeTemplate.querySelector('.lodge__type').innerHTML = 'Дом';
-  } if (typeRandom === 2) {
+  } if (arrAdverts[numberOfAdvert].offer.type === 2) {
     lodgeTemplate.querySelector('.lodge__type').innerHTML = 'Бунгало';
   }
 
   lodgeTemplate.querySelector('.lodge__rooms-and-guests').innerHTML = 'Для ' + arrAdverts[numberOfAdvert].offer.guests
     + ' гостей в ' + arrAdverts[numberOfAdvert].offer.rooms + ' комнатах';
   lodgeTemplate.querySelector('.lodge__checkin-time').innerHTML =
-    'Заезд после ' + arrAdverts[numberOfAdvert].offer.checkin[checkInRandom] +
-    ', выезд до ' + arrAdverts[numberOfAdvert].offer.checkout[checkOutRandom];
+    'Заезд после ' + arrAdverts[numberOfAdvert].offer.checkin +
+    ', выезд до ' + arrAdverts[numberOfAdvert].offer.checkout;
 
   for (var k = 0; k < arrAdverts[numberOfAdvert].offer.features.length; k++) {
     lodgeTemplate.querySelector('.lodge__features').innerHTML +=
@@ -125,10 +149,12 @@ for (i = 0; i < pinAll.length; i++) {
 
 var dialog = document.querySelector('.dialog');
 dialog.classList.add('hidden');
-/*
 var dialogClose = document.querySelector('.dialog__close');
 
 
+/*
 dialogClose.addEventListener('click', function () {
   dialog.classList.add('hidden');
-});*/
+});
+*/
+
