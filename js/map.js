@@ -150,7 +150,11 @@ function pinActive(event) {
 
 for (i = 0; i < pinAll.length; i++) {
   pinAll[i].addEventListener('click', pinActive);
-  pinAll[i].addEventListener('keydown', enterActive);
+  pinAll[i].addEventListener('keydown', function (event) {
+    if (event.keyCode === ENTER_CODE) {
+      pinActive(event);
+    }
+  });
 }
 
 var dialog = document.querySelector('.dialog');
@@ -173,6 +177,7 @@ function closeEsc() {
   });
 }
 
+/*
 function enterActive(event) {
   if (event.keyCode === ENTER_CODE) {
     if (pinClicked) {
@@ -190,3 +195,4 @@ function enterActive(event) {
     closeEsc();
   }
 }
+*/
