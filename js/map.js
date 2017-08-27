@@ -1,5 +1,7 @@
 'use strict';
 
+var ENTER_CODE = 13;
+var ESC_CODE = 27;
 var arrAdverts = [];
 
 var arrTitles = [
@@ -81,7 +83,7 @@ for (var l = 0; l < arrAdverts.length; l++) {
   randomPin.innerHTML = '<div class = "pin pin--create pin--' + l + '" style = "left: ' +
     (arrAdverts[l].location.x - pinMapWidth / 2) + 'px;' +
       ' top: ' + (arrAdverts[l].location.y - pinMapHeight) + 'px">' +
-      '<img src="' + arrAdverts[l].author.avatar + '" class = "rounded" width="40" height="40">' +
+      '<img src="' + arrAdverts[l].author.avatar + '" class = "rounded" width="40" height="40" tabindex="0">' +
       '</div>';
   fragment.appendChild(randomPin);
 }
@@ -143,6 +145,7 @@ var pinActive = function (event) {
   pinClicked.classList.add('pin--active');
   dialog.classList.remove('hidden');
   onCloseClick();
+  closeEsc();
 };
 
 for (i = 0; i < pinAll.length; i++) {
@@ -160,3 +163,11 @@ function onCloseClick() {
   });
 }
 
+function closeEsc() {
+  document.addEventListener('keydown', function (event) {
+    if (event.keyCode === ESC_CODE) {
+      dialog.classList.add('hidden');
+      pinClicked.classList.remove('pin--active');
+    }
+  });
+}
