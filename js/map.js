@@ -94,7 +94,8 @@ var lodgeTemplate = document.querySelector('#lodge-template').content.querySelec
 function showAdwert(numberOfAdvert) {
 
   lodgeTemplate.querySelector('.lodge__title').innerHTML = arrAdverts[numberOfAdvert].offer.title;
-  lodgeTemplate.querySelector('.lodge__address').innerHTML = arrAdverts[numberOfAdvert].offer.address;
+  lodgeTemplate.querySelector('.lodge__address').innerHTML = arrAdverts[numberOfAdvert].location.x +
+    ', ' + arrAdverts[numberOfAdvert].location.y;
   lodgeTemplate.querySelector('.lodge__price').innerHTML = arrAdverts[numberOfAdvert].offer.price + ' &#x20bd/ночь';
 
   if (arrAdverts[numberOfAdvert].offer.type === 0) {
@@ -111,7 +112,7 @@ function showAdwert(numberOfAdvert) {
     'Заезд после ' + arrAdverts[numberOfAdvert].offer.checkin +
     ', выезд до ' + arrAdverts[numberOfAdvert].offer.checkout;
 
-  /*for (var k = 0; k < arrAdverts[numberOfAdvert].offer.features.length; k++) {
+  /* for (var k = 0; k < arrAdverts[numberOfAdvert].offer.features.length; k++) {
     lodgeTemplate.querySelector('.lodge__features').innerHTML +=
       '<span class ="feature__image--' + arrAdverts[numberOfAdvert].offer.features[k] + ' feature__image">';
   }*/
