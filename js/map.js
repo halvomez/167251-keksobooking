@@ -132,7 +132,7 @@ var pinAll = document.querySelectorAll('.pin--create');
 
 
 var pinClicked;
-var pinActive = function (event) {
+function pinActive(event) {
   if (pinClicked) {
     pinClicked.classList.remove('pin--active');
   }
@@ -146,10 +146,11 @@ var pinActive = function (event) {
   dialog.classList.remove('hidden');
   onCloseClick();
   closeEsc();
-};
+}
 
 for (i = 0; i < pinAll.length; i++) {
   pinAll[i].addEventListener('click', pinActive);
+  pinAll[i].addEventListener('keydown', enterActive);
 }
 
 var dialog = document.querySelector('.dialog');
@@ -170,4 +171,22 @@ function closeEsc() {
       pinClicked.classList.remove('pin--active');
     }
   });
+}
+
+function enterActive(event) {
+  if (event.keyCode === ENTER_CODE) {
+    if (pinClicked) {
+      pinClicked.classList.remove('pin--active');
+    }
+    pinClicked = event.currentTarget;
+    for (i = 0; i < pinAll.length; i++) {
+      if (pinClicked.classList.contains('pin--' + i)) {
+        showAdwert(i);
+      }
+    }
+    pinClicked.classList.add('pin--active');
+    dialog.classList.remove('hidden');
+    onCloseClick();
+    closeEsc();
+  }
 }
