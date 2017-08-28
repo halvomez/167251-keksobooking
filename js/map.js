@@ -216,3 +216,16 @@ formPrice.addEventListener('invalid', function () {
     formPrice.setCustomValidity('Цена должна быть от ' + formPrice.min + ' до ' + formPrice.max);
   }
 });
+
+var timeIn = document.querySelector('#timein');
+var timeOut = document.querySelector('#timeout');
+
+timeIn.addEventListener('click', function () {
+  timeOut.value = timeIn.value;
+});
+
+timeOut.addEventListener('click', function () {
+  timeIn.value = timeOut.value;
+});
+
+
