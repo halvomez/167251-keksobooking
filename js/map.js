@@ -211,6 +211,7 @@ noticeForm.elements.price.setAttribute('min', '0');
 noticeForm.elements.price.setAttribute('max', '1000000');
 
 var formPrice = document.querySelector('#price');
+
 formPrice.addEventListener('invalid', function () {
   if (!formPrice.validity.valid) {
     formPrice.setCustomValidity('Цена должна быть от ' + formPrice.min + ' до ' + formPrice.max);
@@ -228,4 +229,19 @@ timeOut.addEventListener('click', function () {
   timeIn.value = timeOut.value;
 });
 
+var type = document.querySelector('#type');
+
+formPrice.addEventListener('change', function () {
+  if (formPrice.min < 1000) {
+    type.value = 'Лачуга';
+  } else if (formPrice.min < 5000) {
+    type.value = 'Квартира';
+  } else if (formPrice.min < 10000) {
+    type.value = 'Дом';
+  } else {
+    type.value = 'Дворец';
+  }
+})
+
+console.log(type.value);
 
