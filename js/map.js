@@ -193,4 +193,26 @@ function closeEsc() {
   });
 }
 
+// module4-task2
 
+var noticeForm = document.forms[1];
+noticeForm.setAttribute('name', 'notice__form');
+noticeForm.elements.address.setAttribute('required', 'required');
+
+noticeForm.elements.title.setAttribute('required', 'required');
+noticeForm.elements.title.setAttribute('minlength', '30');
+noticeForm.elements.title.setAttribute('maxlength', '100');
+noticeForm.elements.title.setAttribute('maxlength', '100');
+
+noticeForm.elements.price.setAttribute('required', 'required');
+noticeForm.elements.price.setAttribute('type', 'number');
+noticeForm.elements.price.setAttribute('value', '1000');
+noticeForm.elements.price.setAttribute('min', '0');
+noticeForm.elements.price.setAttribute('max', '1000000');
+
+var formPrice = document.querySelector('#price');
+formPrice.addEventListener('invalid', function () {
+  if (!formPrice.validity.valid) {
+    formPrice.setCustomValidity('Цена должна быть от ' + formPrice.min + ' до ' + formPrice.max);
+  }
+});
