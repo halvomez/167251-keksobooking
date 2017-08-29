@@ -254,4 +254,9 @@ roomNumber.addEventListener('change', function () {
   }
 });
 
+for (i = 0; i < noticeForm.length; i++) {
+  noticeForm.elements[i].addEventListener('invalid', function (event) {
+    event.target.style.border = '3px solid red';
+  });
+}
 
