@@ -232,16 +232,15 @@ timeOut.addEventListener('click', function () {
 var type = document.querySelector('#type');
 
 formPrice.addEventListener('change', function () {
-  if (formPrice.min < 1000) {
-    type.value = 'Лачуга';
-  } else if (formPrice.min < 5000) {
-    type.value = 'Квартира';
-  } else if (formPrice.min < 10000) {
-    type.value = 'Дом';
+  if (formPrice.value < 1000) {
+    type.value = 'bungalo';
+  } else if (formPrice.value < 5000) {
+    type.value = 'flat';
+  } else if (formPrice.value < 10000) {
+    type.value = 'house';
   } else {
-    type.value = 'Дворец';
+    type.value = 'palace';
   }
-})
+});
 
-console.log(type.value);
 
