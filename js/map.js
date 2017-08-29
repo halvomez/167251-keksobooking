@@ -243,4 +243,18 @@ formPrice.addEventListener('change', function () {
   }
 });
 
+var roomNumber = document.querySelector('#room_number');
+var capacity = document.querySelector('#capacity');
+roomNumber.addEventListener('change', function () {
+  if (roomNumber.value === '1') {
+    capacity.value = 1;
+  } else if (roomNumber.value === '2') {
+    capacity.value = 2;
+  } else if (roomNumber.value === '3') {
+    capacity.value = 3;
+  } else {
+    capacity.value = 0;
+  }
+});
+
 
