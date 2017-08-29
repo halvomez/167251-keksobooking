@@ -246,17 +246,39 @@ formPrice.addEventListener('change', function () {
 
 var roomNumber = document.querySelector('#room_number');
 var capacity = document.querySelector('#capacity');
+capacity.value = roomNumber.value;
+hideCapacity();
+
 roomNumber.addEventListener('change', function () {
+  resetCapacity();
   if (roomNumber.value === '100') {
     capacity.value = 0;
+    hideCapacity();
+  } else if (roomNumber.value === '1') {
+    capacity.value = 1;
+    hideCapacity();
+  } else if (roomNumber.value === '2') {
+    capacity.value = 2;
+    hideCapacityNumber(0);
+    hideCapacityNumber(3);
   } else {
-    capacity.value = roomNumber.value;
+    hideCapacityNumber(3);
   }
 });
 
-for (i = 0; i < noticeForm.length; i++) {
-  noticeForm.elements[i].addEventListener('invalid', function (event) {
-    event.target.style.border = '3px solid red';
-  });
+function hideCapacityNumber(number) {
+  capacity.options[number].setAttribute('hidden', 'hidden');
 }
+function hideCapacity() {
+  for (i = 0; i < capacity.options.length; i++) {
+    capacity.options[i].setAttribute('hidden', 'hidden');
+  }
+}
+
+function resetCapacity() {
+  for (i = 0; i < capacity.options.length; i++) {
+    capacity.options[i].removeAttribute('hidden');
+  }
+}
+
 
