@@ -213,12 +213,6 @@ noticeForm.setAttribute('action', 'https://1510.dump.academy/keksobooking');
 
 var formPrice = document.querySelector('#price');
 
-formPrice.addEventListener('invalid', function () {
-  if (!formPrice.validity.valid) {
-    formPrice.setCustomValidity('Цена должна быть от ' + formPrice.min + ' до ' + formPrice.max);
-  }
-});
-
 var timeIn = document.querySelector('#timein');
 var timeOut = document.querySelector('#timeout');
 
@@ -274,11 +268,21 @@ function hideCapacity() {
     capacity.options[i].setAttribute('hidden', 'hidden');
   }
 }
-
 function resetCapacity() {
   for (i = 0; i < capacity.options.length; i++) {
     capacity.options[i].removeAttribute('hidden');
   }
 }
 
+var noticeForm = document.querySelector('.notice__form');
 
+// noticeForm.addEventListener('change', checkValidity); // работает
+noticeForm.addEventListener('invalid', checkValidity); // invalid не работает
+
+function checkValidity(event) {
+  if (!event.target.validity.valid) {
+    event.target.style.border = '3px solid red';
+  } else {
+    event.target.style.border = '';
+  }
+}
