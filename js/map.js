@@ -256,6 +256,7 @@ roomNumber.addEventListener('change', function () {
     hideCapacityNumber(0);
     hideCapacityNumber(3);
   } else {
+    capacity.value = 3;
     hideCapacityNumber(3);
   }
 });
@@ -274,14 +275,12 @@ function resetCapacity() {
   }
 }
 
-var noticeForm = document.querySelector('.notice__form');
-
-// noticeForm.addEventListener('change', checkValidity); // работает
-noticeForm.addEventListener('invalid', checkValidity); // invalid не работает
+noticeForm.addEventListener('change', checkValidity, true);
+noticeForm.addEventListener('invalid', checkValidity, true);
 
 function checkValidity(event) {
   if (!event.target.validity.valid) {
-    event.target.style.border = '3px solid red';
+    event.target.style.border = '2px solid red';
   } else {
     event.target.style.border = '';
   }
