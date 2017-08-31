@@ -1,6 +1,7 @@
 'use strict';
-var adverts = window.util;
+
 (function drawPins() {
+  var adverts = window.util;
   var pinMapWidth = 56;
   var pinMapHeight = 75;
 
