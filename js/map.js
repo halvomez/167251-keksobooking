@@ -3,9 +3,10 @@
 var ENTER_CODE = 13;
 var ESC_CODE = 27;
 
+var adverts = window.util;
 var lodgeTemplate = document.querySelector('#lodge-template').content.querySelector('.dialog__panel');
 
-function showAdwert(numberOfAdvert) {
+function showAdvert(numberOfAdvert) {
 
   lodgeTemplate.querySelector('.lodge__title').innerHTML = adverts[numberOfAdvert].offer.title;
   lodgeTemplate.querySelector('.lodge__address').innerHTML = adverts[numberOfAdvert].location.x +
@@ -57,7 +58,7 @@ function pinActive(event) {
   pinClicked = event.currentTarget;
   for (i = 0; i < pinAll.length; i++) {
     if (pinClicked.classList.contains('pin--' + i)) {
-      showAdwert(i);
+      showAdvert(i);
     }
   }
   pinClicked.classList.add('pin--active');
@@ -66,7 +67,7 @@ function pinActive(event) {
   closeEsc();
 }
 
-for (i = 0; i < pinAll.length; i++) {
+for (var i = 0; i < pinAll.length; i++) {
   pinAll[i].addEventListener('click', pinActive);
   pinAll[i].addEventListener('keydown', function (event) {
     if (event.keyCode === ENTER_CODE) {
