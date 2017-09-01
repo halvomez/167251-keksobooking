@@ -60,13 +60,16 @@
   }
 
   // module5-task2
+  var pinMainWidth = '75';
+  var pinMainHeight = '94';
 
   var pinMain = document.querySelector('.pin__main');
+  pinMain.style.top = 206 + 'px'; // переделать
+  pinMain.style.left = 562.5 + 'px'; // переделать
   pinMain.classList.remove('hidden');
-  var pinMainImg = pinMain.children[0];
   window.noticeForm.elements.address.setAttribute('readonly', 'readonly');
 
-  pinMainImg.addEventListener('mousedown', function (event) {
+  pinMain.addEventListener('mousedown', function (event) {
     event.preventDefault();
     var startCoords = {
       x: event.clientX,
@@ -89,7 +92,6 @@
       var pinMainY = pinMain.offsetTop - shift.y;
       var pinMainX = pinMain.offsetLeft - shift.x;
 
-
       pinMain.style.top = pinMainY + 'px';
       pinMain.style.left = pinMainX + 'px';
 
@@ -105,7 +107,6 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
-  console.log(window.noticeForm.elements.address.value);
 })();
 
 
