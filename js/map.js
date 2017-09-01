@@ -64,6 +64,7 @@
   var pinMain = document.querySelector('.pin__main');
   pinMain.classList.remove('hidden');
   var pinMainImg = pinMain.children[0];
+  window.noticeForm.elements.address.setAttribute('readonly', 'readonly');
 
   pinMainImg.addEventListener('mousedown', function (event) {
     event.preventDefault();
