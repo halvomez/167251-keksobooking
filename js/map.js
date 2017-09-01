@@ -62,6 +62,39 @@
 
   var pinMain = document.querySelector('.pin__main');
   pinMain.classList.remove('hidden');
+  var pinMainImg = pinMain.children[0];
+  pinMainImg.addEventListener('mousedown', function (event) {
+    event.preventDefault();
+    var startCoords = {
+      x: event.clientX,
+      y: event.clientY
+    };
+
+    var onMouseMove = function (moveEvent) {
+      moveEvent.preventDefault();
+
+      var shift = {
+        x: startCoords.x - moveEvent.clientX,
+        y: startCoords.y - moveEvent.clientY
+      };
+
+      startCoords = {
+        x: moveEvent.clientX,
+        y: moveEvent.clientY
+      };
+
+      pinMain.style.top = (pinMain.offsetTop - shift.y) + 'px';
+      pinMain.style.left = (pinMain.offsetLeft - shift.x) + 'px';
+    };
+
+    var onMouseUp = function (upEvent) {
+      upEvent.preventDefault();
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseMove);
+    };
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  });
 })();
 
 
