@@ -63,6 +63,10 @@
   var pinMain = document.querySelector('.pin__main');
   pinMain.classList.remove('hidden');
   var pinMainImg = pinMain.children[0];
+  var noticeForm = window.util;
+  var formAddress = noticeForm.elements;
+console.log(noticeForm);
+
   pinMainImg.addEventListener('mousedown', function (event) {
     event.preventDefault();
     var startCoords = {

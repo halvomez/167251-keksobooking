@@ -92,5 +92,6 @@
       event.target.style.border = '';
     }
   }
+  window.util = noticeForm;
 })();
 
