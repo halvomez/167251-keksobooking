@@ -59,6 +59,9 @@
       }
     });
   }
+
+  var pinMain = document.querySelector('.pin__main');
+  pinMain.classList.remove('hidden');
 })();
 
 
