@@ -92,6 +92,6 @@
       event.target.style.border = '';
     }
   }
-  window.util = noticeForm;
+  window.noticeForm = noticeForm;
 })();
 

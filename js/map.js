@@ -9,14 +9,13 @@
 
   var pinClicked;
   function pinActive(event) {
-    var showAdvert = window.util.showAdvert;
     if (pinClicked) {
       pinClicked.classList.remove('pin--active');
     }
     pinClicked = event.currentTarget;
     for (i = 0; i < pinAll.length; i++) {
       if (pinClicked.classList.contains('pin--' + i)) {
-        showAdvert(i);
+        window.showAdvert(i);
       }
     }
     pinClicked.classList.add('pin--active');
@@ -63,9 +62,6 @@
   var pinMain = document.querySelector('.pin__main');
   pinMain.classList.remove('hidden');
   var pinMainImg = pinMain.children[0];
-  var noticeForm = window.util;
-  var formAddress = noticeForm.elements;
-console.log(noticeForm);
 
   pinMainImg.addEventListener('mousedown', function (event) {
     event.preventDefault();
