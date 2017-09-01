@@ -82,7 +82,7 @@
     }
   }
 
-  noticeForm.addEventListener('change', checkValidity, true);
+  noticeForm.addEventListener('input', checkValidity, true);
   noticeForm.addEventListener('invalid', checkValidity, true);
 
   function checkValidity(event) {
