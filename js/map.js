@@ -60,12 +60,10 @@
   }
 
   // module5-task2
-  var pinMainWidth = '75';
-  var pinMainHeight = '94';
+  var pinMainWidth = 75;
+  var pinMainHeight = 94;
 
   var pinMain = document.querySelector('.pin__main');
-  pinMain.style.top = 206 + 'px'; // переделать
-  pinMain.style.left = 562.5 + 'px'; // переделать
   pinMain.classList.remove('hidden');
   window.noticeForm.elements.address.setAttribute('readonly', 'readonly');
 
@@ -96,7 +94,7 @@
       pinMain.style.left = pinMainX + 'px';
 
       var formAddress = window.noticeForm.elements.address;
-      formAddress.value = 'x: ' + pinMainX + ', y: ' + pinMainY;
+      formAddress.value = 'x: ' + (pinMainX + pinMainWidth / 2) + ', y: ' + (pinMainY + pinMainHeight);
     };
 
     var onMouseUp = function (upEvent) {
