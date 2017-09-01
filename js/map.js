@@ -59,6 +59,8 @@
     });
   }
 
+  // module5-task2
+
   var pinMain = document.querySelector('.pin__main');
   pinMain.classList.remove('hidden');
   var pinMainImg = pinMain.children[0];
@@ -83,8 +85,15 @@
         y: moveEvent.clientY
       };
 
-      pinMain.style.top = (pinMain.offsetTop - shift.y) + 'px';
-      pinMain.style.left = (pinMain.offsetLeft - shift.x) + 'px';
+      var pinMainY = pinMain.offsetTop - shift.y;
+      var pinMainX = pinMain.offsetLeft - shift.x;
+
+
+      pinMain.style.top = pinMainY + 'px';
+      pinMain.style.left = pinMainX + 'px';
+
+      var formAddress = window.noticeForm.elements.address;
+      formAddress.value = 'x: ' + pinMainX + ', y: ' + pinMainY;
     };
 
     var onMouseUp = function (upEvent) {
@@ -95,6 +104,7 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
+  console.log(window.noticeForm.elements.address.value);
 })();
 
 
