@@ -23,16 +23,20 @@
   var timeIn = document.querySelector('#timein');
   var timeOut = document.querySelector('#timeout');
 
-  timeIn.addEventListener('click', syncTimeValue);
-  timeOut.addEventListener('click', syncTimeValue);
-
-  function syncTimeValue(event) {
-    if (event.target.name === 'timein') {
-      timeOut.value = timeIn.value;
-    } else {
-      timeIn.value = timeOut.value;
-    }
+  function synchronizeField(elem1, elem2, elem1Values, elem2Values, cb) {
+    elem1.addEventListener('change', function () {
+      var elemIndex = elem1Values.indexOf(elem1.value);
+      cb(elem2, elem2Values[elemIndex]);
+    });
   }
+
+  function syncTimes(elem1, elem2) {
+    elem1.value = elem2;
+  }
+
+  synchronizeField(timeIn, timeOut, window.checkInTimes, window.checkOutTimes, syncTimes);
+  synchronizeField(timeOut, timeIn, window.checkInTimes, window.checkOutTimes, syncTimes);
+
 
   var type = document.querySelector('#type');
 

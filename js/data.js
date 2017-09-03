@@ -78,4 +78,6 @@
     return Math.floor(Math.random() * (max - min)) + min;
   }
   window.data = adverts;
+  window.checkOutTimes = checkOutTimes;
+  window.checkInTimes = checkInTimes;
 })();
