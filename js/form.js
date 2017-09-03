@@ -23,10 +23,10 @@
   var timeIn = document.querySelector('#timein');
   var timeOut = document.querySelector('#timeout');
 
-  timeIn.addEventListener('click', syncValue);
-  timeOut.addEventListener('click', syncValue);
+  timeIn.addEventListener('click', syncTimeValue);
+  timeOut.addEventListener('click', syncTimeValue);
 
-  function syncValue(event) {
+  function syncTimeValue(event) {
     if (event.target.name === 'timein') {
       timeOut.value = timeIn.value;
     } else {
