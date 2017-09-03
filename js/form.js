@@ -23,13 +23,16 @@
   var timeIn = document.querySelector('#timein');
   var timeOut = document.querySelector('#timeout');
 
-  timeIn.addEventListener('click', function () {
-    timeOut.value = timeIn.value;
-  });
+  timeIn.addEventListener('click', syncValue);
+  timeOut.addEventListener('click', syncValue);
 
-  timeOut.addEventListener('click', function () {
-    timeIn.value = timeOut.value;
-  });
+  function syncValue(event) {
+    if (event.target.name === 'timein') {
+      timeOut.value = timeIn.value;
+    } else {
+      timeIn.value = timeOut.value;
+    }
+  }
 
   var type = document.querySelector('#type');
 
