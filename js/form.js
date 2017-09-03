@@ -33,11 +33,7 @@
   var type = document.querySelector('#type');
   var formPrice = document.querySelector('#price');
 
-  function syncValueWithMin(element, value) {
-    element.value = value;
-  }
-
-  window.synchronizeField(type, formPrice, window.types, [1000, 5000, 0, 10000], syncValueWithMin);
+  window.synchronizeField(type, formPrice, window.types, [1000, 5000, 0, 10000], syncValues);
 
   var roomNumber = document.querySelector('#room_number');
   var capacity = document.querySelector('#capacity');
