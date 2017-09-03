@@ -5,7 +5,7 @@
 
   var lodgeTemplate = document.querySelector('#lodge-template').content.querySelector('.dialog__panel');
 
-  window.showCard = function showAdvert(numberOfAdvert) {
+  function showAdvert(numberOfAdvert) {
 
     lodgeTemplate.querySelector('.lodge__title').innerHTML = window.data[numberOfAdvert].offer.title;
     lodgeTemplate.querySelector('.lodge__address').innerHTML = window.data[numberOfAdvert].location.x +
@@ -44,5 +44,6 @@
     '<img src="' + window.data[numberOfAdvert].author.avatar + '" alt="Avatar" width="70" height="70">' +
     '<a href="#" class="dialog__close"><img src="img/close.svg" alt="close" width="22" height="22"></a>' + '</div>';
 
-  };
+  }
+  window.showCard = showAdvert;
 })();
