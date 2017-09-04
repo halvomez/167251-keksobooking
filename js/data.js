@@ -40,7 +40,8 @@
   var types = [
     'flat',
     'house',
-    'bungalo'
+    'bungalo',
+    'palace'
   ];
 
   for (var i = 0; i < 8; i++) {
@@ -78,4 +79,7 @@
     return Math.floor(Math.random() * (max - min)) + min;
   }
   window.data = adverts;
+  window.checkOutTimes = checkOutTimes;
+  window.checkInTimes = checkInTimes;
+  window.types = types;
 })();

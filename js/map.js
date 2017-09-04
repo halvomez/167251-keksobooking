@@ -15,7 +15,7 @@
     pinClicked = event.currentTarget;
     for (i = 0; i < pinAll.length; i++) {
       if (pinClicked.classList.contains('pin--' + i)) {
-        window.showAdvert(i);
+        window.showCard(i);
       }
     }
     pinClicked.classList.add('pin--active');

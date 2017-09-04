@@ -18,32 +18,22 @@
   noticeForm.elements.price.setAttribute('max', '1000000');
   noticeForm.setAttribute('action', 'https://1510.dump.academy/keksobooking');
 
-  var formPrice = document.querySelector('#price');
-
   var timeIn = document.querySelector('#timein');
   var timeOut = document.querySelector('#timeout');
 
-  timeIn.addEventListener('click', function () {
-    timeOut.value = timeIn.value;
-  });
 
-  timeOut.addEventListener('click', function () {
-    timeIn.value = timeOut.value;
-  });
+  function syncValues(element, value) {
+    element.value = value;
+  }
+
+  window.synchronizeField(timeIn, timeOut, window.checkInTimes, window.checkOutTimes, syncValues);
+  window.synchronizeField(timeOut, timeIn, window.checkInTimes, window.checkOutTimes, syncValues);
+
 
   var type = document.querySelector('#type');
+  var formPrice = document.querySelector('#price');
 
-  formPrice.addEventListener('change', function () {
-    if (formPrice.value < 1000) {
-      type.value = 'bungalo';
-    } else if (formPrice.value < 5000) {
-      type.value = 'flat';
-    } else if (formPrice.value < 10000) {
-      type.value = 'house';
-    } else {
-      type.value = 'palace';
-    }
-  });
+  window.synchronizeField(type, formPrice, window.types, [1000, 5000, 0, 10000], syncValues);
 
   var roomNumber = document.querySelector('#room_number');
   var capacity = document.querySelector('#capacity');
