@@ -1,6 +1,7 @@
 'use strict';
 
 (function activatePin() {
+  window.loadBackend(function (adverts){});
 
   var ENTER_CODE = 13;
   var ESC_CODE = 27;
@@ -105,6 +106,7 @@
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   });
+  console.log(pinAll);
 })();
 
 

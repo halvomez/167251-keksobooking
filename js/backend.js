@@ -11,8 +11,12 @@
     xhr.open('GET', URL_DATA);
 
     xhr.addEventListener('load', function () {
-      onLoad(xhr.response);
+      if (xhr.status === 200) {
+        onLoad(xhr.response);
+
+      }
     });
+
     xhr.send();
   }
   window.loadBackend = loadBackend;
