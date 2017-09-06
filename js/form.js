@@ -84,12 +84,24 @@
 
   var formSubmit = noticeForm.querySelector('.form__submit');
 
+  function formSubmitReset() {
+    formSubmit.removeAttribute('disabled');
+    formSubmit.style.backgroundColor = 'white';
+    formSubmit.style.color = 'black';
+    formSubmit.innerText = 'Опубликовать';
+  }
+
   function postForm() {
+    formSubmit.style.fontSize = '22px';
     formSubmit.style.color = 'white';
-    formSubmit.innerText = 'Отправлено';
+    formSubmit.style.backgroundColor = 'darker';
+    formSubmit.innerText = 'Опубликовано';
     formSubmit.style.backgroundColor = '#ffaa99';
     formSubmit.setAttribute('disabled', 'disabled');
     noticeForm.reset();
+    noticeForm.addEventListener('input', function () {
+      formSubmitReset();
+    });
     if (node) {
       noticeForm.removeChild(node);
     }
@@ -106,7 +118,8 @@
 
 
   function postFormError(error) {
-    formSubmit.innerText = 'не удалось отправить';
+    formSubmit.style.fontSize = '14px';
+    formSubmit.innerText = 'не удалось отправить, повторите';
     formSubmit.appendChild(node);
     formSubmit.style.color = '#ffaa99';
     node.innerText = 'код ' + error.status;
