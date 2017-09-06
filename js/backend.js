@@ -19,6 +19,7 @@
       });
       xhr.send();
     },
+
     save: function (data, onLoad, onError) {
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
@@ -27,7 +28,7 @@
         if (xhr.status === 200) {
           onLoad(xhr.response);
         } else {
-          onError(xhr.response);
+          onError(xhr);
         }
       });
       xhr.send(data);

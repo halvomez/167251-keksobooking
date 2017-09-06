@@ -41,6 +41,7 @@
       lodgeTemplate.querySelector('.lodge__photos').innerHTML +=
     '<img src="' + serverData[numberOfAdvert].offer.photos[i] + '" alt="Lodge photo" width="52" height="42">';
     }
+
     var oldDialogPanel = document.querySelector('.dialog__panel');
     var parentDialogPanel = oldDialogPanel.parentNode;
     parentDialogPanel.replaceChild(lodgeTemplate, oldDialogPanel);

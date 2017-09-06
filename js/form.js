@@ -81,6 +81,42 @@
       event.target.style.border = '';
     }
   }
+
+  var formSubmit = noticeForm.querySelector('.form__submit');
+
+  function postForm() {
+    formSubmit.style.color = 'white';
+    formSubmit.innerText = 'Отправлено';
+    formSubmit.style.backgroundColor = '#ffaa99';
+    formSubmit.setAttribute('disabled', 'disabled');
+    noticeForm.reset();
+    if (node) {
+      noticeForm.removeChild(node);
+    }
+  }
+
+  var node = document.createElement('div');
+  node.classList.add('error-massage');
+  node.style = 'z-index: 2; margin: 0 auto';
+  node.style.textAlign = 'center';
+  node.style.color = 'white';
+  node.style.backgroundColor = '#ffaa99';
+  node.style.fontSize = '16px';
+  node.style.opacity = '0';
+
+
+  function postFormError(error) {
+    formSubmit.innerText = 'не удалось отправить';
+    formSubmit.appendChild(node);
+    formSubmit.style.color = '#ffaa99';
+    node.innerText = 'код ' + error.status;
+    node.style.opacity = '1';
+  }
+
+  noticeForm.addEventListener('submit', function (event) {
+    window.backend.save(new FormData(noticeForm), postForm, postFormError);
+    event.preventDefault();
+  });
   window.noticeForm = noticeForm;
 })();
 
