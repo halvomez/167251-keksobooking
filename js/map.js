@@ -9,6 +9,7 @@
 
   var pinClicked;
   function pinActive(event) {
+
     if (pinClicked) {
       pinClicked.classList.remove('pin--active');
     }
