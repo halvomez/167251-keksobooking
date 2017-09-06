@@ -26,20 +26,19 @@
     element.value = value;
   }
 
-  window.synchronizeField(timeIn, timeOut, window.checkInTimes, window.checkOutTimes, syncValues);
-  window.synchronizeField(timeOut, timeIn, window.checkInTimes, window.checkOutTimes, syncValues);
+  window.synchronizeField(timeIn, timeOut, ['12:00', '13:00', '14:00'], ['12:00', '13:00', '14:00'], syncValues);
+  window.synchronizeField(timeOut, timeIn, ['12:00', '13:00', '14:00'], ['12:00', '13:00', '14:00'], syncValues);
 
 
   var type = document.querySelector('#type');
   var formPrice = document.querySelector('#price');
 
-  window.synchronizeField(type, formPrice, window.types, [1000, 5000, 0, 10000], syncValues);
+  window.synchronizeField(type, formPrice, ['flat', 'house', 'bungalo', 'palace'], [1000, 5000, 0, 10000], syncValues);
 
   var roomNumber = document.querySelector('#room_number');
   var capacity = document.querySelector('#capacity');
   capacity.value = roomNumber.value;
   hideCapacity();
-
   roomNumber.addEventListener('change', function () {
     resetCapacity();
     if (roomNumber.value === '100') {
