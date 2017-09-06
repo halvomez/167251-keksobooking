@@ -83,6 +83,7 @@
   }
 
   var formSubmit = noticeForm.querySelector('.form__submit');
+  var errorPlace = document.querySelector('.header__motto');
 
   function formSubmitReset() {
     formSubmit.removeAttribute('disabled');
@@ -102,29 +103,41 @@
     noticeForm.addEventListener('input', function () {
       formSubmitReset();
     });
-    if (node) {
-      noticeForm.removeChild(node);
+    if (nodeError) {
+      noticeForm.removeChild(nodeError);
     }
   }
 
-  var node = document.createElement('div');
-  node.classList.add('error-massage');
-  node.style = 'z-index: 2; margin: 0 auto';
-  node.style.textAlign = 'center';
-  node.style.color = 'white';
-  node.style.backgroundColor = '#ffaa99';
-  node.style.fontSize = '16px';
-  node.style.opacity = '0';
+  var nodeError = document.createElement('div');
+  nodeError.classList.add('error-massage');
+  nodeError.style.zIndex = '2';
+  nodeError.style.margin = '0 auto';
+  nodeError.style.textAlign = 'center';
+  nodeError.style.color = 'white';
+  nodeError.style.backgroundColor = '#ffaa99';
+  nodeError.style.fontSize = '16px';
+  nodeError.style.opacity = '0';
 
 
   function postFormError(error) {
     formSubmit.style.fontSize = '14px';
     formSubmit.innerText = 'не удалось отправить, повторите';
-    formSubmit.appendChild(node);
+    formSubmit.appendChild(nodeError);
     formSubmit.style.color = '#ffaa99';
-    node.innerText = 'код ' + error.status;
-    node.style.opacity = '1';
+    nodeError.innerText = 'код ' + error.status;
+    nodeError.style.opacity = '1';
   }
+
+  function showError(xhrStatus) {
+    errorPlace.innerText = 'Таймаут загрузки, кексы не нашлись за ' + xhrStatus + ' мс';
+    errorPlace.style.backgroundColor = 'red';
+    errorPlace.style.display = 'inline';
+    errorPlace.style.textAlign = 'center';
+    errorPlace.style.paddingLeft = '10px';
+    errorPlace.style.paddingRight = '10px';
+  }
+
+  window.backend.load('', showError);
 
   noticeForm.addEventListener('submit', function (event) {
     window.backend.save(new FormData(noticeForm), postForm, postFormError);

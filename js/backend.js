@@ -14,9 +14,18 @@
         if (xhr.status === 200) {
           onLoad(xhr.response);
         } else {
-          onError(xhr.response);
+          onError('Неизвестный статус: ' + xhr.status + ' ' + xhr.statusText);
         }
       });
+
+      xhr.addEventListener('error', function () {
+        onError(xhr.status);
+      });
+      xhr.addEventListener('timeout', function () {
+        onError(xhr.status);
+      });
+
+      xhr.timeout = 10000;
       xhr.send();
     },
 
@@ -36,8 +45,6 @@
 
   };
 
-  window.backend.load(getData);
-
   function getData(serverData) {
     if (typeof serverData === 'object') {
       window.serverData = serverData;
@@ -45,4 +52,5 @@
       window.activatePin();
     }
   }
+  window.backend.load(getData);
 })();
