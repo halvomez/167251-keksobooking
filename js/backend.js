@@ -25,7 +25,7 @@
         onError('Таймаут загрузки, кексы не нашлись за ' + xhr.timeout + ' мс');
       });
 
-      xhr.timeout = 100;
+      xhr.timeout = 10000;
       xhr.send();
     },
 
