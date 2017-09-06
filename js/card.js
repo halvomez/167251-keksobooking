@@ -28,14 +28,19 @@
     ', выезд до ' + serverData[numberOfAdvert].offer.checkout;
 
     lodgeTemplate.querySelector('.lodge__features').innerHTML = '';
-    for (var k = 0; k < serverData[numberOfAdvert].offer.features.length; k++) {
 
+    for (var k = 0; k < serverData[numberOfAdvert].offer.features.length; k++) {
       lodgeTemplate.querySelector('.lodge__features').innerHTML +=
       '<span class ="feature__image--' + serverData[numberOfAdvert].offer.features[k] + ' feature__image">';
     }
 
     lodgeTemplate.querySelector('.lodge__description').innerHTML = serverData[numberOfAdvert].offer.description;
+    lodgeTemplate.querySelector('.lodge__photos').innerHTML = '';
 
+    for (var i = 0; i < serverData[numberOfAdvert].offer.photos.length; i++) {
+      lodgeTemplate.querySelector('.lodge__photos').innerHTML +=
+    '<img src="' + serverData[numberOfAdvert].offer.photos[i] + '" alt="Lodge photo" width="52" height="42">';
+    }
     var oldDialogPanel = document.querySelector('.dialog__panel');
     var parentDialogPanel = oldDialogPanel.parentNode;
     parentDialogPanel.replaceChild(lodgeTemplate, oldDialogPanel);
