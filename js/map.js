@@ -7,7 +7,6 @@
     var ESC_CODE = 27;
 
     var pinAll = document.querySelectorAll('.pin--create');
-
     var pinClicked;
 
     function pinActive(event) {
@@ -62,7 +61,6 @@
       });
     }
 
-    // module5-task2
     var pinMainWidth = 75;
     var pinMainHeight = 94;
 

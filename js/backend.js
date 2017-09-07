@@ -42,15 +42,5 @@
       });
       xhr.send(data);
     }
-
   };
-
-  function getData(serverData) {
-    if (typeof serverData === 'object') {
-      window.serverData = serverData;
-      window.addPins();
-      window.activatePin();
-    }
-  }
-  window.backend.load(getData);
 })();
