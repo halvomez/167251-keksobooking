@@ -2,48 +2,59 @@
 
 (function generateAdvert() {
 
-
   var lodgeTemplate = document.querySelector('#lodge-template').content.querySelector('.dialog__panel');
 
-  function showAdvert(numberOfAdvert) {
+  window.backend.load(getData);
+  var advertData;
+  function getData(serverData) {
+    if (typeof serverData === 'object') {
+      advertData = serverData;
+    }
+  }
 
-    lodgeTemplate.querySelector('.lodge__title').innerHTML = window.data[numberOfAdvert].offer.title;
-    lodgeTemplate.querySelector('.lodge__address').innerHTML = window.data[numberOfAdvert].location.x +
-    ', ' + window.data[numberOfAdvert].location.y;
-    lodgeTemplate.querySelector('.lodge__price').innerHTML = window.data[numberOfAdvert].offer.price + ' &#x20bd/ночь';
+  function showCard(numberOfAdvert) {
 
-    if (window.data[numberOfAdvert].offer.type === 0) {
+    lodgeTemplate.querySelector('.lodge__title').innerHTML = advertData[numberOfAdvert].offer.title;
+    lodgeTemplate.querySelector('.lodge__address').innerHTML = advertData[numberOfAdvert].location.x +
+    ', ' + advertData[numberOfAdvert].location.y;
+    lodgeTemplate.querySelector('.lodge__price').innerHTML = advertData[numberOfAdvert].offer.price + ' &#x20bd/ночь';
+
+    if (advertData[numberOfAdvert].offer.type === 0) {
       lodgeTemplate.querySelector('.lodge__type').innerHTML = 'Квартира';
-    } if (window.data[numberOfAdvert].offer.type === 1) {
+    } if (advertData[numberOfAdvert].offer.type === 1) {
       lodgeTemplate.querySelector('.lodge__type').innerHTML = 'Дом';
-    } if (window.data[numberOfAdvert].offer.type === 2) {
+    } if (advertData[numberOfAdvert].offer.type === 2) {
       lodgeTemplate.querySelector('.lodge__type').innerHTML = 'Бунгало';
     }
 
-    lodgeTemplate.querySelector('.lodge__rooms-and-guests').innerHTML = 'Для ' + window.data[numberOfAdvert].offer.guests
-    + ' гостей в ' + window.data[numberOfAdvert].offer.rooms + ' комнатах';
+    lodgeTemplate.querySelector('.lodge__rooms-and-guests').innerHTML = 'Для ' + advertData[numberOfAdvert].offer.guests
+    + ' гостей в ' + advertData[numberOfAdvert].offer.rooms + ' комнатах';
     lodgeTemplate.querySelector('.lodge__checkin-time').innerHTML =
-    'Заезд после ' + window.data[numberOfAdvert].offer.checkin +
-    ', выезд до ' + window.data[numberOfAdvert].offer.checkout;
+    'Заезд после ' + advertData[numberOfAdvert].offer.checkin +
+    ', выезд до ' + advertData[numberOfAdvert].offer.checkout;
 
     lodgeTemplate.querySelector('.lodge__features').innerHTML = '';
-    for (var k = 0; k < window.data[numberOfAdvert].offer.features.length; k++) {
 
+    for (var k = 0; k < advertData[numberOfAdvert].offer.features.length; k++) {
       lodgeTemplate.querySelector('.lodge__features').innerHTML +=
-      '<span class ="feature__image--' + window.data[numberOfAdvert].offer.features[k] + ' feature__image">';
-
+      '<span class ="feature__image--' + advertData[numberOfAdvert].offer.features[k] + ' feature__image">';
     }
 
-    lodgeTemplate.querySelector('.lodge__description').innerHTML = window.data[numberOfAdvert].offer.description;
+    lodgeTemplate.querySelector('.lodge__description').innerHTML = advertData[numberOfAdvert].offer.description;
+    lodgeTemplate.querySelector('.lodge__photos').innerHTML = '';
+
+    for (var i = 0; i < advertData[numberOfAdvert].offer.photos.length; i++) {
+      lodgeTemplate.querySelector('.lodge__photos').innerHTML +=
+    '<img src="' + advertData[numberOfAdvert].offer.photos[i] + '" alt="Lodge photo" width="52" height="42">';
+    }
 
     var oldDialogPanel = document.querySelector('.dialog__panel');
     var parentDialogPanel = oldDialogPanel.parentNode;
     parentDialogPanel.replaceChild(lodgeTemplate, oldDialogPanel);
 
     document.querySelector('.dialog__title').innerHTML = '<div class="dialog__title">' +
-    '<img src="' + window.data[numberOfAdvert].author.avatar + '" alt="Avatar" width="70" height="70">' +
+    '<img src="' + advertData[numberOfAdvert].author.avatar + '" alt="Avatar" width="70" height="70">' +
     '<a href="#" class="dialog__close"><img src="img/close.svg" alt="close" width="22" height="22"></a>' + '</div>';
-
   }
-  window.showCard = showAdvert;
+  window.showCard = showCard;
 })();
