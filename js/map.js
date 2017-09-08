@@ -67,6 +67,7 @@
     var pinMain = document.querySelector('.pin__main');
     pinMain.classList.remove('hidden');
     window.noticeForm.elements.address.setAttribute('readonly', 'readonly');
+    window.noticeForm.elements.address.setAttribute('placeholder', 'Переместите метку на карте');
 
     pinMain.addEventListener('mousedown', function (event) {
       event.preventDefault();

@@ -37,6 +37,9 @@
     formSubmit.style.color = '#ffaa99';
     nodeError.innerText = 'код ' + error.status;
     nodeError.style.opacity = '1';
+    if (!window.noticeForm.elements.address.value) {
+      window.noticeForm.elements.address.style.border = '2px solid red';
+    }
   }
   window.postFormError = postFormError;
 })();

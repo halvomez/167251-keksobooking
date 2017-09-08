@@ -94,6 +94,7 @@
   }
 
   function postForm() {
+    window.noticeForm.elements.address.style.border = '';
     formSubmit.style.fontSize = '22px';
     formSubmit.style.color = 'white';
     formSubmit.style.backgroundColor = 'darker';
