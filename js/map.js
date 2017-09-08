@@ -66,8 +66,10 @@
 
     var pinMain = document.querySelector('.pin__main');
     pinMain.classList.remove('hidden');
-    window.noticeForm.elements.address.setAttribute('readonly', 'readonly');
-    window.noticeForm.elements.address.setAttribute('placeholder', 'Переместите метку на карте');
+
+    var noticeForm = document.forms[1];
+    noticeForm.elements.address.setAttribute('readonly', 'readonly');
+    noticeForm.elements.address.setAttribute('placeholder', 'Переместите метку на карте');
 
     pinMain.addEventListener('mousedown', function (event) {
       event.preventDefault();
@@ -95,7 +97,7 @@
         pinMain.style.top = pinMainY + 'px';
         pinMain.style.left = pinMainX + 'px';
 
-        var formAddress = window.noticeForm.elements.address;
+        var formAddress = noticeForm.elements.address;
         formAddress.value = 'x: ' + (pinMainX + pinMainWidth / 2) + ', y: ' + (pinMainY + pinMainHeight);
       };
 

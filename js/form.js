@@ -82,9 +82,7 @@
     }
   }
 
-  window.formSubmit = noticeForm.querySelector('.form__submit');
-  var formSubmit = window.formSubmit;
-  var nodeError = window.nodeError;
+  var formSubmit = noticeForm.querySelector('.form__submit');
 
   function formSubmitReset() {
     formSubmit.removeAttribute('disabled');
@@ -93,8 +91,9 @@
     formSubmit.innerText = 'Опубликовать';
   }
 
+  var nodeError = document.createElement('div');
   function postForm() {
-    window.noticeForm.elements.address.style.border = '';
+    noticeForm.elements.address.style.border = '';
     formSubmit.style.fontSize = '22px';
     formSubmit.style.color = 'white';
     formSubmit.style.backgroundColor = 'darker';
@@ -114,6 +113,5 @@
     window.backend.save(new FormData(noticeForm), postForm, window.postFormError);
     event.preventDefault();
   });
-  window.noticeForm = noticeForm;
 })();
 
