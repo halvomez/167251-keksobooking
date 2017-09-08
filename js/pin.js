@@ -20,10 +20,18 @@
       return pin.offer.type === 'flat';
     });
     clearMap();
-    // addPins(filtredPins);
+    addPins(filtredPins);
   }
 
+  var pinMap = document.querySelector('.tokyo__pin-map');
+
   function clearMap() {
+    var divCreateAll = pinMap.querySelectorAll('.div--create');
+    var divCreate;
+    for (var i = 0; i < divCreateAll.length; i++) {
+      divCreate = pinMap.querySelector('.div--create')
+      pinMap.removeChild(divCreate);
+    }
   }
 
 
@@ -34,9 +42,6 @@
   var housingGuestsNumber = formFilter.querySelector('#housing_guests-number');
 
   houseType.addEventListener('change', renderPins);
-
-
-  var pinMap = document.querySelector('.tokyo__pin-map');
 
   function addPins(data) {
     var fragment = document.createDocumentFragment();
