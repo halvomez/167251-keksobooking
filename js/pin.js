@@ -25,18 +25,16 @@
     window.activatePin();
   }
 
-  // function renderPinsPrice(price) {
-  //   var filtredPinsPrice = pins.filter(function (pin) {
-  //     if (price === 'middle') {
-  //     } else if (price === 'low') {
-  //     } else if (price === 'high') {
-  //     }
-  //   });
-  //   clearMap();
-  //   window.getData(renderPinsPrice);
-  //   addPins(filtredPinsPrice);
-  //   window.activatePin();
-  // }
+  function renderPinsRooms(rooms) {
+    var filtredPinsRooms = pins.filter(function (pin) {
+      return pin.offer.rooms === rooms;
+    });
+    clearMap();
+    window.getData(filtredPinsRooms);
+    addPins(filtredPinsRooms);
+    window.activatePin();
+  }
+
 
   var pinMap = document.querySelector('.tokyo__pin-map');
 
@@ -56,11 +54,12 @@
   var housingGuestsNumber = formFilter.querySelector('#housing_guests-number');
 
   houseType.addEventListener('change', function (event) {
-    if (event.target.value === 'flat') {
+    var value = event.target.value;
+    if (value === 'flat') {
       renderPinsType('flat');
-    } else if (event.target.value === 'house') {
+    } else if (value === 'house') {
       renderPinsType('house');
-    } else if (event.target.value === 'bungalo') {
+    } else if (value === 'bungalo') {
       renderPinsType('bungalo');
     } else {
       window.getData(pins);
@@ -69,8 +68,19 @@
     }
   });
 
-  housePrice.addEventListener('change', function (event) {
-    renderPinsPrice(event.target.value);
+  housingRoomNumber.addEventListener('change', function (event) {
+    var value = event.target.value;
+    if (value === '1') {
+      renderPinsRooms(1);
+    } else if (value === '2') {
+      renderPinsRooms(2);
+    } else if (value === '3') {
+      renderPinsRooms(3);
+    } else {
+      window.getData(pins);
+      addPins(pins);
+      window.activatePin();
+    }
   });
 
 
