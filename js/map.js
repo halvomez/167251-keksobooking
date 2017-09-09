@@ -1,6 +1,6 @@
 'use strict';
 
-(function workWithPins() {
+(function () {
 
   function activatePin() {
     var ENTER_CODE = 13;

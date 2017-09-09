@@ -1,6 +1,6 @@
 'use strict';
 
-(function showMessage() {
+(function () {
   var errorPlace = document.querySelector('.header__motto');
 
   function showError(errorMassage) {

@@ -1,6 +1,6 @@
 'use strict';
 
-(function drawPins() {
+(function () {
   var pinMapWidth = 56;
   var pinMapHeight = 75;
   var pins = [];
@@ -20,6 +20,7 @@
       return pin.offer.type === type;
     });
     clearMap();
+    pins = filtredPinsType;
     window.getData(filtredPinsType);
     addPins(filtredPinsType);
     window.activatePin();

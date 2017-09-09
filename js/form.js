@@ -1,6 +1,6 @@
 'use strict';
 
-(function setForm() {
+(function () {
 
   var noticeForm = document.querySelector('.notice__form');
   noticeForm.setAttribute('name', 'notice__form');

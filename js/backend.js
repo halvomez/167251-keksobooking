@@ -1,6 +1,6 @@
 'use strict';
 
-(function createBackend() {
+(function () {
 
   var URL_DATA = 'https://1510.dump.academy/keksobooking/data';
   var URL = 'https://1510.dump.academy/keksobooking';

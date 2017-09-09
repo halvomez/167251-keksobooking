@@ -1,6 +1,6 @@
 'use strict';
 
-(function generateAdvert() {
+(function () {
 
   var lodgeTemplate = document.querySelector('#lodge-template').content.querySelector('.dialog__panel');
 
