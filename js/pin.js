@@ -15,7 +15,7 @@
     }
   }
 
-  function renderPins(param) {
+  function renderPinsType(param) {
     var filtredPins = pins.filter(function (pin) {
       return pin.offer.type === param;
     });
@@ -35,28 +35,25 @@
     }
   }
 
-
   var formFilter = document.forms[0];
   var houseType = formFilter.querySelector('#housing_type');
   var housePrice = formFilter.querySelector('#housing_price');
   var housingRoomNumber = formFilter.querySelector('#housing_room-number');
   var housingGuestsNumber = formFilter.querySelector('#housing_guests-number');
-  var flat = 'flat';
-  var house = 'house';
-  var bungalo = 'bungalo';
 
   houseType.addEventListener('change', function (event) {
     if (event.target.value === 'flat') {
-      renderPins(flat);
+      renderPinsType('flat');
     } else if (event.target.value === 'house') {
-      renderPins(house);
+      renderPinsType('house');
     } else if (event.target.value === 'bungalo') {
-      renderPins(bungalo);
+      renderPinsType('bungalo');
     } else {
       addPins(pins);
       window.activatePin();
     }
   });
+
 
   function addPins(data) {
     var fragment = document.createDocumentFragment();
