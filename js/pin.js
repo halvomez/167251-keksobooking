@@ -25,6 +25,25 @@
     window.activatePin();
   }
 
+  function renderPinsPrice(price) {
+    var returnPrice;
+    var filtredPinsPrice = pins.filter(function (pin) {
+      if (price === 'middle') {
+        returnPrice = pin.offer.price <= 50000 && pin.offer.price >= 10000;
+      } else if (price === 'low') {
+        returnPrice = pin.offer.price < 10000;
+      } else if (price === 'high') {
+        returnPrice = pin.offer.price > 50000;
+      }
+      return returnPrice;
+    });
+    clearMap();
+    window.getData(filtredPinsPrice);
+    addPins(filtredPinsPrice);
+    window.activatePin();
+  }
+
+
   function renderPinsRooms(rooms) {
     var filtredPinsRooms = pins.filter(function (pin) {
       return pin.offer.rooms === rooms;
@@ -71,6 +90,21 @@
       renderPinsType('house');
     } else if (value === 'bungalo') {
       renderPinsType('bungalo');
+    } else {
+      window.getData(pins);
+      addPins(pins);
+      window.activatePin();
+    }
+  });
+
+  housePrice.addEventListener('change', function (event) {
+    var value = event.target.value;
+    if (value === 'middle') {
+      renderPinsPrice('middle');
+    } else if (value === 'low') {
+      renderPinsPrice('low');
+    } else if (value === 'high') {
+      renderPinsPrice('high');
     } else {
       window.getData(pins);
       addPins(pins);
