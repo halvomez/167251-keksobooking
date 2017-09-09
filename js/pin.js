@@ -26,16 +26,15 @@
   }
 
   function renderPinsPrice(price) {
-    var returnPrice;
     var filtredPinsPrice = pins.filter(function (pin) {
       if (price === 'middle') {
-        returnPrice = pin.offer.price <= 50000 && pin.offer.price >= 10000;
+        return pin.offer.price <= 50000 && pin.offer.price >= 10000;
       } else if (price === 'low') {
-        returnPrice = pin.offer.price < 10000;
+        return pin.offer.price < 10000;
       } else if (price === 'high') {
-        returnPrice = pin.offer.price > 50000;
+        return pin.offer.price > 50000;
       }
-      return returnPrice;
+      return false;
     });
     clearMap();
     window.getData(filtredPinsPrice);

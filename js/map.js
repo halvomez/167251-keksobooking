@@ -61,55 +61,53 @@
       });
     }
 
-    var pinMainWidth = 75;
-    var pinMainHeight = 94;
-
-    var pinMain = document.querySelector('.pin__main');
     pinMain.classList.remove('hidden');
 
-    var noticeForm = document.forms[1];
-    noticeForm.elements.address.setAttribute('readonly', 'readonly');
-    noticeForm.elements.address.setAttribute('placeholder', 'Переместите метку на карте');
-
-    pinMain.addEventListener('mousedown', function (event) {
-      event.preventDefault();
-      var startCoords = {
-        x: event.clientX,
-        y: event.clientY
-      };
-
-      var onMouseMove = function (moveEvent) {
-        moveEvent.preventDefault();
-
-        var shift = {
-          x: startCoords.x - moveEvent.clientX,
-          y: startCoords.y - moveEvent.clientY
-        };
-
-        startCoords = {
-          x: moveEvent.clientX,
-          y: moveEvent.clientY
-        };
-
-        var pinMainY = pinMain.offsetTop - shift.y;
-        var pinMainX = pinMain.offsetLeft - shift.x;
-
-        pinMain.style.top = pinMainY + 'px';
-        pinMain.style.left = pinMainX + 'px';
-
-        var formAddress = noticeForm.elements.address;
-        formAddress.value = 'x: ' + (pinMainX + pinMainWidth / 2) + ', y: ' + (pinMainY + pinMainHeight);
-      };
-
-      var onMouseUp = function (upEvent) {
-        upEvent.preventDefault();
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseMove);
-      };
-      document.addEventListener('mousemove', onMouseMove);
-      document.addEventListener('mouseup', onMouseUp);
-    });
   }
+  var noticeForm = document.querySelector('.notice__form');
+  noticeForm.elements.address.setAttribute('readonly', 'readonly');
+  noticeForm.elements.address.setAttribute('placeholder', 'Переместите метку на карте');
+  var pinMain = document.querySelector('.pin__main');
+  var pinMainWidth = 75;
+  var pinMainHeight = 94;
+  pinMain.addEventListener('mousedown', function (event) {
+    event.preventDefault();
+    var startCoords = {
+      x: event.clientX,
+      y: event.clientY
+    };
+
+    var onMouseMove = function (moveEvent) {
+      moveEvent.preventDefault();
+
+      var shift = {
+        x: startCoords.x - moveEvent.clientX,
+        y: startCoords.y - moveEvent.clientY
+      };
+
+      startCoords = {
+        x: moveEvent.clientX,
+        y: moveEvent.clientY
+      };
+
+      var pinMainY = pinMain.offsetTop - shift.y;
+      var pinMainX = pinMain.offsetLeft - shift.x;
+
+      pinMain.style.top = pinMainY + 'px';
+      pinMain.style.left = pinMainX + 'px';
+
+      var formAddress = noticeForm.elements.address;
+      formAddress.value = 'x: ' + (pinMainX + pinMainWidth / 2) + ', y: ' + (pinMainY + pinMainHeight);
+    };
+
+    var onMouseUp = function (upEvent) {
+      upEvent.preventDefault();
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseMove);
+    };
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  });
   window.activatePin = activatePin;
 
 })();
