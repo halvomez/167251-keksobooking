@@ -35,6 +35,16 @@
     window.activatePin();
   }
 
+  function renderPinsNumberGuests(guests) {
+    var filtredPinsNumberGuests = pins.filter(function (pin) {
+      return pin.offer.guests === guests;
+    });
+    clearMap();
+    window.getData(filtredPinsNumberGuests);
+    addPins(filtredPinsNumberGuests);
+    window.activatePin();
+  }
+
 
   var pinMap = document.querySelector('.tokyo__pin-map');
 
@@ -76,6 +86,19 @@
       renderPinsRooms(2);
     } else if (value === '3') {
       renderPinsRooms(3);
+    } else {
+      window.getData(pins);
+      addPins(pins);
+      window.activatePin();
+    }
+  });
+
+  housingGuestsNumber.addEventListener('change', function (event) {
+    var value = event.target.value;
+    if (value === '1') {
+      renderPinsNumberGuests(1);
+    } else if (value === '2') {
+      renderPinsNumberGuests(2);
     } else {
       window.getData(pins);
       addPins(pins);
