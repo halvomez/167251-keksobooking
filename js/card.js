@@ -11,6 +11,7 @@
       advertData = serverData;
     }
   }
+  window.getData = getData;
 
   function showCard(numberOfAdvert) {
 

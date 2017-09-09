@@ -15,12 +15,29 @@
     }
   }
 
-  function renderPinsType(param) {
-    var filtredPins = pins.filter(function (pin) {
-      return pin.offer.type === param;
+  function renderPinsType(type) {
+    var filtredPinsType = pins.filter(function (pin) {
+      return pin.offer.type === type;
     });
     clearMap();
-    addPins(filtredPins);
+    window.getData(filtredPinsType);
+    addPins(filtredPinsType);
+    window.activatePin();
+  }
+
+  function renderPinsPrice(price) {
+    var filtredPinsPrice = pins.filter(function (pin) {
+      if (price === 'middle') {
+        return pin.offer.price === 50000;
+      } else if (price === 'low') {
+        return pin.offer.price === 100;
+      } else if (price === 'high') {
+        return pin.offer.price >= 50000;
+      }
+    });
+    clearMap();
+    window.getData(renderPinsPrice);
+    addPins(filtredPinsPrice);
     window.activatePin();
   }
 
@@ -30,7 +47,7 @@
     var divCreateAll = pinMap.querySelectorAll('.div--create');
     var divCreate;
     for (var i = 0; i < divCreateAll.length; i++) {
-      divCreate = pinMap.querySelector('.div--create')
+      divCreate = pinMap.querySelector('.div--create');
       pinMap.removeChild(divCreate);
     }
   }
@@ -49,13 +66,19 @@
     } else if (event.target.value === 'bungalo') {
       renderPinsType('bungalo');
     } else {
+      window.getData(pins);
       addPins(pins);
       window.activatePin();
     }
   });
 
+  housePrice.addEventListener('change', function (event) {
+    renderPinsPrice(event.target.value);
+  });
+
 
   function addPins(data) {
+
     var fragment = document.createDocumentFragment();
 
     for (var i = 0; i < data.length; i++) {
@@ -71,3 +94,4 @@
     pinMap.appendChild(fragment);
   }
 })();
+
