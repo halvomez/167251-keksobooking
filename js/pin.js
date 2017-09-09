@@ -21,6 +21,7 @@
     });
     clearMap();
     addPins(filtredPins);
+    window.activatePin();
   }
 
   var pinMap = document.querySelector('.tokyo__pin-map');
@@ -53,6 +54,7 @@
       renderPins(bungalo);
     } else {
       addPins(pins);
+      window.activatePin();
     }
   });
 
