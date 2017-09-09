@@ -2,7 +2,7 @@
 
 (function setForm() {
 
-  var noticeForm = document.forms[1];
+  var noticeForm = document.querySelector('.notice__form');
   noticeForm.setAttribute('name', 'notice__form');
   noticeForm.elements.address.setAttribute('required', 'required');
 

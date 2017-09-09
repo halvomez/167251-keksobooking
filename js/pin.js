@@ -25,21 +25,18 @@
     window.activatePin();
   }
 
-  function renderPinsPrice(price) {
-    var filtredPinsPrice = pins.filter(function (pin) {
-      if (price === 'middle') {
-        return pin.offer.price === 50000;
-      } else if (price === 'low') {
-        return pin.offer.price === 100;
-      } else if (price === 'high') {
-        return pin.offer.price >= 50000;
-      }
-    });
-    clearMap();
-    window.getData(renderPinsPrice);
-    addPins(filtredPinsPrice);
-    window.activatePin();
-  }
+  // function renderPinsPrice(price) {
+  //   var filtredPinsPrice = pins.filter(function (pin) {
+  //     if (price === 'middle') {
+  //     } else if (price === 'low') {
+  //     } else if (price === 'high') {
+  //     }
+  //   });
+  //   clearMap();
+  //   window.getData(renderPinsPrice);
+  //   addPins(filtredPinsPrice);
+  //   window.activatePin();
+  // }
 
   var pinMap = document.querySelector('.tokyo__pin-map');
 
@@ -52,7 +49,7 @@
     }
   }
 
-  var formFilter = document.forms[0];
+  var formFilter = document.querySelector('.tokyo__filters');
   var houseType = formFilter.querySelector('#housing_type');
   var housePrice = formFilter.querySelector('#housing_price');
   var housingRoomNumber = formFilter.querySelector('#housing_room-number');
