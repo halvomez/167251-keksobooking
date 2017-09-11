@@ -64,9 +64,11 @@
     });
   }
 
-  function renderPinsFeature(featureType) {
-    pinsFiltered = pinsFiltered.filter(function (pin) {
-      return (pin.offer.features.indexOf(featureType) >= 0);
+  function renderPinsFeature(pickFeatures) {
+    pickFeatures.forEach(function (feature) {
+      pinsFiltered = pinsFiltered.filter(function (pin) {
+        return pin.offer.features.indexOf(feature) >= 0;
+      });
     });
   }
 
@@ -82,8 +84,8 @@
       renderPinsRooms(+roomsValue);
     } if (guestsValue !== 'any') {
       renderPinsNumberGuests(+guestsValue);
-    } if (featureValue) {
-      renderPinsFeature(featureValue);
+    } if (someFeatures.length > 0) {
+      renderPinsFeature(someFeatures);
     }
     window.getData(pinsFiltered);
     window.addPins(pinsFiltered);
