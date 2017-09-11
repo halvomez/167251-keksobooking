@@ -37,8 +37,7 @@
       return pin.offer.type === type;
     });
   }
-  //
-  //
+
   function renderPinsPrice(price) {
     pinsFiltered = pinsFiltered.filter(function (pin) {
       if (price === 'middle') {
@@ -73,7 +72,6 @@
   }
 
   function renderPin() {
-
     clearMap();
     pinsFiltered = pins.slice();
     if (typeValue !== 'any') {
@@ -101,22 +99,22 @@
 
   houseType.addEventListener('change', function (event) {
     typeValue = event.target.value;
-    renderPin();
+    window.debounce(renderPin);
   });
 
   housePrice.addEventListener('change', function (event) {
     priceValue = event.target.value;
-    renderPin();
+    window.debounce(renderPin);
   });
 
   housingRoomNumber.addEventListener('change', function (event) {
     roomsValue = event.target.value;
-    renderPin();
+    window.debounce(renderPin);
   });
 
   housingGuestsNumber.addEventListener('change', function (event) {
     guestsValue = event.target.value;
-    renderPin();
+    window.debounce(renderPin);
   });
 
   formFeatures.forEach(function (feature) {
@@ -128,7 +126,7 @@
       } else {
         someFeatures.splice(indexFeature, 1);
       }
-      renderPin();
+      window.debounce(renderPin);
     });
   });
 })();
