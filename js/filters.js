@@ -5,8 +5,8 @@
   var pins = [];
   var typeValue = 'any';
   var priceValue = 'any';
-  var roomsValue;
-  var guestsValue;
+  var roomsValue = 'any';
+  var guestsValue = 'any';
   var pinsFiltered;
 
   window.backend.load(getData);
@@ -51,10 +51,10 @@
   }
 
   function renderPinsRooms(rooms) {
-    pinsFiltered = pins.filter(function (pin) {
-        return pin.offer.rooms === rooms;
-      });
-    }
+    pinsFiltered = pinsFiltered.filter(function (pin) {
+      return pin.offer.rooms === rooms;
+    });
+  }
 
   function renderPin() {
     clearMap();
@@ -63,6 +63,8 @@
       renderPinsType(typeValue);
     } if (priceValue !== 'any') {
       renderPinsPrice(priceValue);
+    } if (roomsValue !== 'any') {
+      renderPinsRooms(+roomsValue);
     }
     window.getData(pinsFiltered);
     window.addPins(pinsFiltered);
@@ -86,18 +88,11 @@
     renderPin();
   });
 
-  // housingRoomNumber.addEventListener('change', function (event) {
-  //   roomsValue = event.target.value;
-  //   if (roomsValue === '1') {
-  //     renderPinsRooms(1);
-  //   } else if (roomsValue === '2') {
-  //     renderPinsRooms(2);
-  //   } else if (roomsValue === '3') {
-  //     renderPinsRooms(3);
-  //   } else {
-  //     roomsValue = false;
-  //   }
-  // });
+  housingRoomNumber.addEventListener('change', function (event) {
+    roomsValue = event.target.value;
+    renderPin();
+  });
+
   //
   // housingGuestsNumber.addEventListener('change', function (event) {
   //   guestsValue = event.target.value;
