@@ -7,6 +7,7 @@
   var priceValue = 'middle';
   var roomsValue = 'any';
   var guestsValue = 'any';
+  var featureValue;
   var pinsFiltered;
 
   window.backend.load(getData);
@@ -62,7 +63,19 @@
     });
   }
 
+  function renderPinsFeature(featureType) {
+    pinsFiltered = pinsFiltered.filter(function (pin) {
+      for (var i = 0; i < pin.offer.features.length; i++) {
+        if (pin.offer.features[i] === featureType) {
+          return true;
+        }
+      }
+      return false;
+    });
+  }
+
   function renderPin() {
+
     clearMap();
     pinsFiltered = pins.slice();
     if (typeValue !== 'any') {
@@ -73,6 +86,8 @@
       renderPinsRooms(+roomsValue);
     } if (guestsValue !== 'any') {
       renderPinsNumberGuests(+guestsValue);
+    } if (featureValue) {
+      renderPinsFeature(featureValue);
     }
     window.getData(pinsFiltered);
     window.addPins(pinsFiltered);
@@ -84,6 +99,7 @@
   var housePrice = formFilter.querySelector('#housing_price');
   var housingRoomNumber = formFilter.querySelector('#housing_room-number');
   var housingGuestsNumber = formFilter.querySelector('#housing_guests-number');
+  var formFeatures = formFilter.querySelectorAll('input[type = checkbox]');
 
   houseType.addEventListener('change', function (event) {
     typeValue = event.target.value;
@@ -105,5 +121,14 @@
     renderPin();
   });
 
-
+  formFeatures.forEach(function (feature) {
+    feature.addEventListener('click', function (event) {
+      if (featureValue) {
+        featureValue = false;
+      } else {
+        featureValue = event.target.value;
+      }
+      renderPin();
+    });
+  });
 })();
