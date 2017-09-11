@@ -9,6 +9,7 @@
   var guestsValue = 'any';
   var featureValue;
   var pinsFiltered;
+  var someFeatures = [];
 
   window.backend.load(getData);
 
@@ -118,10 +119,12 @@
 
   formFeatures.forEach(function (feature) {
     feature.addEventListener('click', function (event) {
-      if (featureValue) {
-        featureValue = false;
+      featureValue = event.target.value;
+      var indexFeature = someFeatures.indexOf(featureValue);
+      if (indexFeature < 0) {
+        someFeatures.push(featureValue);
       } else {
-        featureValue = event.target.value;
+        someFeatures.splice(indexFeature, 1);
       }
       renderPin();
     });

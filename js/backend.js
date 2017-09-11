@@ -19,7 +19,7 @@
       });
 
       xhr.addEventListener('error', function () {
-        onError('Произошла ошибка, статус ' + xhr.status);
+        onError('Произошла ошибка загрузки, статус ' + xhr.status);
       });
       xhr.addEventListener('timeout', function () {
         onError('Таймаут загрузки, кексы не нашлись за ' + xhr.timeout + ' мс');
