@@ -17,9 +17,15 @@
   function getData(serverData) {
     if (typeof serverData === 'object') {
       pins = serverData;
-      renderPin(pins);
+      getStartPins();
+      renderPin(startPins);
       window.activatePin();
     }
+  }
+
+  function getStartPins() {
+    startPins = pins.slice();
+    startPins = startPins.splice(window.getRandom(6, 0), 3);
   }
 
   var pinMap = document.querySelector('.tokyo__pin-map');
