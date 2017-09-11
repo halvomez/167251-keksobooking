@@ -65,12 +65,7 @@
 
   function renderPinsFeature(featureType) {
     pinsFiltered = pinsFiltered.filter(function (pin) {
-      for (var i = 0; i < pin.offer.features.length; i++) {
-        if (pin.offer.features[i] === featureType) {
-          return true;
-        }
-      }
-      return false;
+      return (pin.offer.features.indexOf(featureType) >= 0);
     });
   }
 
@@ -99,7 +94,7 @@
   var housePrice = formFilter.querySelector('#housing_price');
   var housingRoomNumber = formFilter.querySelector('#housing_room-number');
   var housingGuestsNumber = formFilter.querySelector('#housing_guests-number');
-  var formFeatures = formFilter.querySelectorAll('input[type = checkbox]');
+  var formFeatures = formFilter.querySelectorAll('input[type=checkbox]');
 
   houseType.addEventListener('change', function (event) {
     typeValue = event.target.value;
