@@ -21,6 +21,8 @@
     }
   }
 
+  console.log(window.getRandomArr(pins));
+
   var pinMap = document.querySelector('.tokyo__pin-map');
 
   function clearMap() {

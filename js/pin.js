@@ -1,8 +1,8 @@
 'use strict';
 
 (function () {
-  var pinMapWidth = 56;
-  var pinMapHeight = 75;
+  var PIN_WIDTH = 56;
+  var PIN_HEIGHT = 75;
 
   var pinMap = document.querySelector('.tokyo__pin-map');
 
@@ -14,8 +14,8 @@
       var randomPin = document.createElement('div');
       randomPin.classList.add('div--create');
       randomPin.innerHTML = '<div class = "pin pin--create pin--' + i + '" style = "left: ' +
-      (data[i].location.x - pinMapWidth / 2) + 'px;' +
-      ' top: ' + (data[i].location.y - pinMapHeight) + 'px"  tabindex="0">' +
+      (data[i].location.x - PIN_WIDTH / 2) + 'px;' +
+      ' top: ' + (data[i].location.y - PIN_HEIGHT) + 'px"  tabindex="0">' +
       '<img src="' + data[i].author.avatar + '" class = "rounded" width="40" height="40">' +
       '</div>';
       fragment.appendChild(randomPin);
