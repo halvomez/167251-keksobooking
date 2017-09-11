@@ -50,12 +50,18 @@
     });
   }
 
+  function renderPinsRooms(rooms) {
+    pinsFiltered = pins.filter(function (pin) {
+        return pin.offer.rooms === rooms;
+      });
+    }
+
   function renderPin() {
     clearMap();
     pinsFiltered = pins.slice();
     if (typeValue !== 'any') {
       renderPinsType(typeValue);
-    } else if (priceValue !== 'any') {
+    } if (priceValue !== 'any') {
       renderPinsPrice(priceValue);
     }
     window.getData(pinsFiltered);
@@ -105,15 +111,7 @@
   // });
 
   //
-  // function renderPinsRooms(rooms) {
-  //   var filtredPinsRooms = pins.filter(function (pin) {
-  //     return pin.offer.rooms === rooms;
-  //   });
-  //   clearMap();
-  //   window.getData(filtredPinsRooms);
-  //   window.addPins(filtredPinsRooms);
-  //   window.activatePin();
-  // }
+  //
   //
   // function renderPinsNumberGuests(guests) {
   //   var filtredPinsNumberGuests = pins.filter(function (pin) {
