@@ -4,7 +4,7 @@
 
   var pins = [];
   var typeValue = 'any';
-  var priceValue = 'middle';
+  var priceValue = 'any';
   var roomsValue = 'any';
   var guestsValue = 'any';
   var featureValue;
@@ -96,6 +96,7 @@
   var housingRoomNumber = formFilter.querySelector('#housing_room-number');
   var housingGuestsNumber = formFilter.querySelector('#housing_guests-number');
   var formFeatures = formFilter.querySelectorAll('input[type=checkbox]');
+  housePrice.value = priceValue;
 
   houseType.addEventListener('change', function (event) {
     typeValue = event.target.value;

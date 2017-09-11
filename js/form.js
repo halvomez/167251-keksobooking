@@ -20,7 +20,6 @@
   var timeIn = document.querySelector('#timein');
   var timeOut = document.querySelector('#timeout');
 
-
   function syncValues(element, value) {
     element.value = value;
   }
