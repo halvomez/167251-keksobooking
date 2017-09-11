@@ -4,7 +4,7 @@
 
   var pins = [];
   var typeValue = 'any';
-  var priceValue = 'any';
+  var priceValue = 'middle';
   var roomsValue = 'any';
   var guestsValue = 'any';
   var pinsFiltered;
@@ -14,7 +14,7 @@
   function getData(serverData) {
     if (typeof serverData === 'object') {
       pins = serverData;
-      window.addPins(pins);
+      renderPin();
       window.activatePin();
     }
   }
@@ -82,7 +82,6 @@
   var formFilter = document.querySelector('.tokyo__filters');
   var houseType = formFilter.querySelector('#housing_type');
   var housePrice = formFilter.querySelector('#housing_price');
-  housePrice.options[1].removeAttribute('selected');
   var housingRoomNumber = formFilter.querySelector('#housing_room-number');
   var housingGuestsNumber = formFilter.querySelector('#housing_guests-number');
 
@@ -105,4 +104,6 @@
     guestsValue = event.target.value;
     renderPin();
   });
+
+
 })();
