@@ -9,7 +9,6 @@
   noticeForm.elements.title.setAttribute('required', 'required');
   noticeForm.elements.title.setAttribute('minlength', '30');
   noticeForm.elements.title.setAttribute('maxlength', '100');
-  noticeForm.elements.title.setAttribute('maxlength', '100');
 
   noticeForm.elements.price.setAttribute('required', 'required');
   noticeForm.elements.price.setAttribute('type', 'number');
@@ -104,6 +103,7 @@
     noticeForm.addEventListener('input', function () {
       formSubmitReset();
     });
+    capacity.value = roomNumber.value;
     if (nodeError) {
       noticeForm.removeChild(nodeError);
     }
