@@ -1,6 +1,6 @@
 'use strict';
 
-(function createBackend() {
+(function () {
 
   var URL_DATA = 'https://1510.dump.academy/keksobooking/data';
   var URL = 'https://1510.dump.academy/keksobooking';
@@ -19,7 +19,7 @@
       });
 
       xhr.addEventListener('error', function () {
-        onError('Произошла ошибка, статус ' + xhr.status);
+        onError('Произошла ошибка загрузки, статус ' + xhr.status);
       });
       xhr.addEventListener('timeout', function () {
         onError('Таймаут загрузки, кексы не нашлись за ' + xhr.timeout + ' мс');

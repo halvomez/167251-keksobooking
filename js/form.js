@@ -1,28 +1,31 @@
 'use strict';
 
-(function setForm() {
+(function () {
 
-  var noticeForm = document.forms[1];
+  var noticeForm = document.querySelector('.notice__form');
   noticeForm.setAttribute('name', 'notice__form');
   noticeForm.elements.address.setAttribute('required', 'required');
 
   noticeForm.elements.title.setAttribute('required', 'required');
   noticeForm.elements.title.setAttribute('minlength', '30');
   noticeForm.elements.title.setAttribute('maxlength', '100');
-  noticeForm.elements.title.setAttribute('maxlength', '100');
 
   noticeForm.elements.price.setAttribute('required', 'required');
   noticeForm.elements.price.setAttribute('type', 'number');
   noticeForm.elements.price.setAttribute('value', '1000');
-  noticeForm.elements.price.setAttribute('min', '0');
+  noticeForm.elements.price.setAttribute('min', '1000');
   noticeForm.elements.price.setAttribute('max', '1000000');
   noticeForm.setAttribute('action', 'https://1510.dump.academy/keksobooking');
 
   var timeIn = document.querySelector('#timein');
   var timeOut = document.querySelector('#timeout');
 
-
   function syncValues(element, value) {
+    element.value = value;
+  }
+
+  function syncValuesWithMin(element, value) {
+    element.min = value;
     element.value = value;
   }
 
@@ -33,12 +36,14 @@
   var type = document.querySelector('#type');
   var formPrice = document.querySelector('#price');
 
-  window.synchronizeField(type, formPrice, ['flat', 'house', 'bungalo', 'palace'], [1000, 5000, 0, 10000], syncValues);
+  window.synchronizeField(type, formPrice, ['flat', 'house', 'bungalo', 'palace'], [1000, 5000, 0, 10000], syncValuesWithMin);
 
   var roomNumber = document.querySelector('#room_number');
   var capacity = document.querySelector('#capacity');
   capacity.value = roomNumber.value;
+
   hideCapacity();
+
   roomNumber.addEventListener('change', function () {
     resetCapacity();
     if (roomNumber.value === '100') {
@@ -82,9 +87,7 @@
     }
   }
 
-  window.formSubmit = noticeForm.querySelector('.form__submit');
-  var formSubmit = window.formSubmit;
-  var nodeError = window.nodeError;
+  var formSubmit = noticeForm.querySelector('.form__submit');
 
   function formSubmitReset() {
     formSubmit.removeAttribute('disabled');
@@ -93,7 +96,9 @@
     formSubmit.innerText = 'Опубликовать';
   }
 
+  var nodeError = document.createElement('div');
   function postForm() {
+    noticeForm.elements.address.style.border = '';
     formSubmit.style.fontSize = '22px';
     formSubmit.style.color = 'white';
     formSubmit.style.backgroundColor = 'darker';
@@ -104,6 +109,7 @@
     noticeForm.addEventListener('input', function () {
       formSubmitReset();
     });
+    capacity.value = roomNumber.value;
     if (nodeError) {
       noticeForm.removeChild(nodeError);
     }
@@ -113,6 +119,5 @@
     window.backend.save(new FormData(noticeForm), postForm, window.postFormError);
     event.preventDefault();
   });
-  window.noticeForm = noticeForm;
 })();
 

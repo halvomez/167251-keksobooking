@@ -1,6 +1,6 @@
 'use strict';
 
-(function showMessage() {
+(function () {
   var errorPlace = document.querySelector('.header__motto');
 
   function showError(errorMassage) {
@@ -18,8 +18,7 @@
 
   window.backend.load(noError, showError);
 
-  window.nodeError = document.createElement('div');
-  var nodeError = window.nodeError;
+  var nodeError = document.createElement('div');
   nodeError.classList.add('error-massage');
   nodeError.style.zIndex = '2';
   nodeError.style.margin = '0 auto';
@@ -29,7 +28,9 @@
   nodeError.style.fontSize = '16px';
   nodeError.style.opacity = '0';
 
-  var formSubmit = window.formSubmit;
+  var noticeForm = document.forms[1];
+  var formSubmit = noticeForm.querySelector('.form__submit');
+
   function postFormError(error) {
     formSubmit.style.fontSize = '14px';
     formSubmit.innerText = 'не удалось отправить, повторите';
@@ -37,6 +38,9 @@
     formSubmit.style.color = '#ffaa99';
     nodeError.innerText = 'код ' + error.status;
     nodeError.style.opacity = '1';
+    if (!noticeForm.elements.address.value) {
+      noticeForm.elements.address.style.border = '2px solid red';
+    }
   }
   window.postFormError = postFormError;
 })();

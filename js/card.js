@@ -1,6 +1,6 @@
 'use strict';
 
-(function generateAdvert() {
+(function () {
 
   var lodgeTemplate = document.querySelector('#lodge-template').content.querySelector('.dialog__panel');
 
@@ -11,6 +11,7 @@
       advertData = serverData;
     }
   }
+  window.getData = getData;
 
   function showCard(numberOfAdvert) {
 
@@ -19,12 +20,12 @@
     ', ' + advertData[numberOfAdvert].location.y;
     lodgeTemplate.querySelector('.lodge__price').innerHTML = advertData[numberOfAdvert].offer.price + ' &#x20bd/ночь';
 
-    if (advertData[numberOfAdvert].offer.type === 0) {
+    if (advertData[numberOfAdvert].offer.type === 'flat') {
       lodgeTemplate.querySelector('.lodge__type').innerHTML = 'Квартира';
-    } if (advertData[numberOfAdvert].offer.type === 1) {
+    } if (advertData[numberOfAdvert].offer.type === 'house') {
       lodgeTemplate.querySelector('.lodge__type').innerHTML = 'Дом';
-    } if (advertData[numberOfAdvert].offer.type === 2) {
-      lodgeTemplate.querySelector('.lodge__type').innerHTML = 'Бунгало';
+    } if (advertData[numberOfAdvert].offer.type === 'bungalo') {
+      lodgeTemplate.querySelector('.lodge__type').innerHTML = 'Сарай';
     }
 
     lodgeTemplate.querySelector('.lodge__rooms-and-guests').innerHTML = 'Для ' + advertData[numberOfAdvert].offer.guests
