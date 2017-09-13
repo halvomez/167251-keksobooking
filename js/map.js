@@ -11,7 +11,7 @@
     var pinsAll = document.querySelectorAll('.pin--create');
     var pinClicked;
 
-    function showPinActive(event) {
+    function pinClickHandler(event) {
 
       if (pinClicked) {
         pinClicked.classList.remove('pin--active');
@@ -29,10 +29,10 @@
     }
 
     for (var i = 0; i < pinsAll.length; i++) {
-      pinsAll[i].addEventListener('click', showPinActive);
+      pinsAll[i].addEventListener('click', pinClickHandler);
       pinsAll[i].addEventListener('keydown', function (event) {
         if (event.keyCode === ENTER_CODE) {
-          showPinActive(event);
+          pinClickHandler(event);
         }
       });
     }
@@ -77,7 +77,7 @@
       y: event.clientY
     };
 
-    function onMouseMove(moveEvent) {
+    function pinMoveHandler(moveEvent) {
       moveEvent.preventDefault();
 
       var shift = {
@@ -100,13 +100,13 @@
       formAddress.value = 'x: ' + (pinMainX + PIN_MAIN_WIDTH / 2) + ', y: ' + (pinMainY + PIN_MAIN_HEIGHT);
     }
 
-    function onMouseUp(upEvent) {
+    function mouseUpHandler(upEvent) {
       upEvent.preventDefault();
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseMove);
+      document.removeEventListener('mousemove', pinMoveHandler);
+      document.removeEventListener('mouseup', pinMoveHandler);
     }
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
+    document.addEventListener('mousemove', pinMoveHandler);
+    document.addEventListener('mouseup', mouseUpHandler);
   });
   window.activatePin = activatePin;
 })();
