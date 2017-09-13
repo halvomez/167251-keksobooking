@@ -14,34 +14,34 @@
 
   function showCard(numberOfAdvert) {
 
-    lodgeTemplate.querySelector('.lodge__title').innerHTML = advertData[numberOfAdvert].offer.title;
-    lodgeTemplate.querySelector('.lodge__address').innerHTML = advertData[numberOfAdvert].location.x +
+    lodgeTemplate.querySelector('.lodge__title').textContent = advertData[numberOfAdvert].offer.title;
+    lodgeTemplate.querySelector('.lodge__address').textContent = advertData[numberOfAdvert].location.x +
     ', ' + advertData[numberOfAdvert].location.y;
     lodgeTemplate.querySelector('.lodge__price').innerHTML = advertData[numberOfAdvert].offer.price + ' &#x20bd/ночь';
 
     if (advertData[numberOfAdvert].offer.type === 'flat') {
-      lodgeTemplate.querySelector('.lodge__type').innerHTML = 'Квартира';
+      lodgeTemplate.querySelector('.lodge__type').textContent = 'Квартира';
     } if (advertData[numberOfAdvert].offer.type === 'house') {
-      lodgeTemplate.querySelector('.lodge__type').innerHTML = 'Дом';
+      lodgeTemplate.querySelector('.lodge__type').textContent = 'Дом';
     } if (advertData[numberOfAdvert].offer.type === 'bungalo') {
-      lodgeTemplate.querySelector('.lodge__type').innerHTML = 'Сарай';
+      lodgeTemplate.querySelector('.lodge__type').textContent = 'Сарай';
     }
 
-    lodgeTemplate.querySelector('.lodge__rooms-and-guests').innerHTML = 'Для ' + advertData[numberOfAdvert].offer.guests
+    lodgeTemplate.querySelector('.lodge__rooms-and-guests').textContent = 'Для ' + advertData[numberOfAdvert].offer.guests
     + ' гостей в ' + advertData[numberOfAdvert].offer.rooms + ' комнатах';
-    lodgeTemplate.querySelector('.lodge__checkin-time').innerHTML =
+    lodgeTemplate.querySelector('.lodge__checkin-time').textContent =
     'Заезд после ' + advertData[numberOfAdvert].offer.checkin +
     ', выезд до ' + advertData[numberOfAdvert].offer.checkout;
 
-    lodgeTemplate.querySelector('.lodge__features').innerHTML = '';
+    lodgeTemplate.querySelector('.lodge__features').textContent = '';
 
     for (var k = 0; k < advertData[numberOfAdvert].offer.features.length; k++) {
       lodgeTemplate.querySelector('.lodge__features').innerHTML +=
       '<span class ="feature__image--' + advertData[numberOfAdvert].offer.features[k] + ' feature__image">';
     }
 
-    lodgeTemplate.querySelector('.lodge__description').innerHTML = advertData[numberOfAdvert].offer.description;
-    lodgeTemplate.querySelector('.lodge__photos').innerHTML = '';
+    lodgeTemplate.querySelector('.lodge__description').textContent = advertData[numberOfAdvert].offer.description;
+    lodgeTemplate.querySelector('.lodge__photos').textContent = '';
 
     for (var i = 0; i < advertData[numberOfAdvert].offer.photos.length; i++) {
       lodgeTemplate.querySelector('.lodge__photos').innerHTML +=
