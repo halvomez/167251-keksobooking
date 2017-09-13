@@ -76,10 +76,10 @@
     }
   }
 
-  noticeForm.addEventListener('input', checkValidity, true);
-  noticeForm.addEventListener('invalid', checkValidity, true);
+  noticeForm.addEventListener('input', submitClickHandler, true);
+  noticeForm.addEventListener('invalid', submitClickHandler, true);
 
-  function checkValidity(event) {
+  function submitClickHandler(event) {
     if (!event.target.validity.valid) {
       event.target.style.border = '2px solid red';
     } else {
@@ -89,7 +89,7 @@
 
   var formSubmit = noticeForm.querySelector('.form__submit');
 
-  function resetFormSubmit() {
+  function formResetHandler() {
     formSubmit.removeAttribute('disabled');
     formSubmit.style.backgroundColor = 'white';
     formSubmit.style.color = 'black';
@@ -105,9 +105,7 @@
     formSubmit.style.backgroundColor = '#ffaa99';
     formSubmit.setAttribute('disabled', 'disabled');
     noticeForm.reset();
-    noticeForm.addEventListener('input', function () {
-      resetFormSubmit();
-    });
+    noticeForm.addEventListener('input', formResetHandler);
     formCapacity.value = formRoomNumber.value;
   }
 
