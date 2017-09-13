@@ -2,14 +2,10 @@
 
 (function () {
 
+  var PRICE_MIDDLE = 10000;
+  var PRICE_HIGH = 50000;
+
   var pins = [];
-  var typeValue = 'any';
-  var priceValue = 'any';
-  var roomsValue = 'any';
-  var guestsValue = 'any';
-  var featureValue;
-  var pinsFiltered;
-  var someFeatures = [];
   var startPins = [];
 
   window.backend.load(getData);
@@ -18,7 +14,7 @@
     if (typeof serverData === 'object') {
       pins = serverData;
       getStartPins();
-      renderPin(startPins);
+      renderPins(startPins);
       window.activatePin();
     }
   }
@@ -48,13 +44,11 @@
   function renderPinsPrice(price) {
     pinsFiltered = pinsFiltered.filter(function (pin) {
       if (price === 'middle') {
-        return pin.offer.price <= 50000 && pin.offer.price >= 10000;
+        return pin.offer.price <= PRICE_HIGH && pin.offer.price >= PRICE_MIDDLE;
       } else if (price === 'low') {
-        return pin.offer.price < 10000;
-      } else if (price === 'high') {
-        return pin.offer.price > 50000;
+        return pin.offer.price < PRICE_MIDDLE;
       }
-      return false;
+      return pin.offer.price > PRICE_HIGH;
     });
   }
 
@@ -78,9 +72,14 @@
     });
   }
 
-  function renderPin(data) {
+  var typeValue = 'any';
+  var priceValue = 'any';
+  var roomsValue = 'any';
+  var guestsValue = 'any';
+
+  function renderPins(currentData) {
     clearMap();
-    pinsFiltered = data.slice();
+    pinsFiltered = currentData.slice();
     if (typeValue !== 'any') {
       renderPinsType(typeValue);
     } if (priceValue !== 'any') {
@@ -97,44 +96,49 @@
     window.activatePin();
   }
 
-  var formFilter = document.querySelector('.tokyo__filters');
-  var houseType = formFilter.querySelector('#housing_type');
-  var housePrice = formFilter.querySelector('#housing_price');
-  var housingRoomNumber = formFilter.querySelector('#housing_room-number');
-  var housingGuestsNumber = formFilter.querySelector('#housing_guests-number');
-  var formFeatures = formFilter.querySelectorAll('input[type=checkbox]');
-  housePrice.value = priceValue;
+  var mapFilter = document.querySelector('.tokyo__filters');
+  var mapType = mapFilter.querySelector('#housing_type');
+  var mapPrice = mapFilter.querySelector('#housing_price');
+  var mapRoomNumber = mapFilter.querySelector('#housing_room-number');
+  var mapGuestsNumber = mapFilter.querySelector('#housing_guests-number');
+  var mapFeatures = mapFilter.querySelectorAll('input[type=checkbox]');
+  mapPrice.value = priceValue;
 
-  houseType.addEventListener('change', function (event) {
+  mapType.addEventListener('change', function (event) {
     typeValue = event.target.value;
-    window.debounce(renderPin, pins);
+    window.debounce(renderPins, pins);
   });
 
-  housePrice.addEventListener('change', function (event) {
+  mapPrice.addEventListener('change', function (event) {
     priceValue = event.target.value;
-    window.debounce(renderPin, pins);
+    window.debounce(renderPins, pins);
   });
 
-  housingRoomNumber.addEventListener('change', function (event) {
+  mapRoomNumber.addEventListener('change', function (event) {
     roomsValue = event.target.value;
-    window.debounce(renderPin, pins);
+    window.debounce(renderPins, pins);
   });
 
-  housingGuestsNumber.addEventListener('change', function (event) {
+  mapGuestsNumber.addEventListener('change', function (event) {
     guestsValue = event.target.value;
-    window.debounce(renderPin, pins);
+    window.debounce(renderPins, pins);
   });
 
-  formFeatures.forEach(function (feature) {
+  var featureValue;
+  var pinsFiltered;
+  var indexFeature;
+  var someFeatures = [];
+
+  [].forEach.call(mapFeatures, function (feature) {
     feature.addEventListener('click', function (event) {
       featureValue = event.target.value;
-      var indexFeature = someFeatures.indexOf(featureValue);
+      indexFeature = someFeatures.indexOf(featureValue);
       if (indexFeature < 0) {
         someFeatures.push(featureValue);
       } else {
         someFeatures.splice(indexFeature, 1);
       }
-      window.debounce(renderPin, pins);
+      window.debounce(renderPins, pins);
     });
   });
 })();
