@@ -11,7 +11,6 @@
       advertData = serverData;
     }
   }
-  window.getData = getData;
 
   function showCard(numberOfAdvert) {
 
@@ -58,4 +57,5 @@
     '<a href="#" class="dialog__close"><img src="img/close.svg" alt="close" width="22" height="22"></a>' + '</div>';
   }
   window.showCard = showCard;
+  window.getData = getData;
 })();

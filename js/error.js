@@ -12,11 +12,11 @@
     errorPlace.style.paddingRight = '10px';
   }
 
-  function noError() {
+  function showNoError() {
     errorPlace.innerText += ', к бою готовы';
   }
 
-  window.backend.load(noError, showError);
+  window.backend.load(showNoError, showError);
 
   var nodeError = document.createElement('div');
   nodeError.classList.add('error-massage');
@@ -31,7 +31,7 @@
   var noticeForm = document.forms[1];
   var formSubmit = noticeForm.querySelector('.form__submit');
 
-  function postFormError(error) {
+  function showPostFormError(error) {
     formSubmit.style.fontSize = '14px';
     formSubmit.innerText = 'не удалось отправить, повторите';
     formSubmit.appendChild(nodeError);
@@ -42,5 +42,5 @@
       noticeForm.elements.address.style.border = '2px solid red';
     }
   }
-  window.postFormError = postFormError;
+  window.showPostFormError = showPostFormError;
 })();

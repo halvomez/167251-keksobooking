@@ -33,46 +33,46 @@
   window.synchronizeField(timeOut, timeIn, ['12:00', '13:00', '14:00'], ['12:00', '13:00', '14:00'], syncValues);
 
 
-  var type = document.querySelector('#type');
+  var formType = document.querySelector('#type');
   var formPrice = document.querySelector('#price');
 
-  window.synchronizeField(type, formPrice, ['flat', 'house', 'bungalo', 'palace'], [1000, 5000, 0, 10000], syncValuesWithMin);
+  window.synchronizeField(formType, formPrice, ['flat', 'house', 'bungalo', 'palace'], [1000, 5000, 0, 10000], syncValuesWithMin);
 
-  var roomNumber = document.querySelector('#room_number');
-  var capacity = document.querySelector('#capacity');
-  capacity.value = roomNumber.value;
+  var formRoomNumber = document.querySelector('#room_number');
+  var formCapacity = document.querySelector('#capacity');
+  formCapacity.value = formRoomNumber.value;
 
   hideCapacity();
 
-  roomNumber.addEventListener('change', function () {
+  formRoomNumber.addEventListener('change', function () {
     resetCapacity();
-    if (roomNumber.value === '100') {
-      capacity.value = 0;
+    if (formRoomNumber.value === '100') {
+      formCapacity.value = 0;
       hideCapacity();
-    } else if (roomNumber.value === '1') {
-      capacity.value = 1;
+    } else if (formRoomNumber.value === '1') {
+      formCapacity.value = 1;
       hideCapacity();
-    } else if (roomNumber.value === '2') {
-      capacity.value = 2;
+    } else if (formRoomNumber.value === '2') {
+      formCapacity.value = 2;
       hideCapacityNumber(0);
       hideCapacityNumber(3);
     } else {
-      capacity.value = 3;
+      formCapacity.value = 3;
       hideCapacityNumber(3);
     }
   });
 
   function hideCapacityNumber(number) {
-    capacity.options[number].setAttribute('hidden', 'hidden');
+    formCapacity.options[number].setAttribute('hidden', 'hidden');
   }
   function hideCapacity() {
-    for (var i = 0; i < capacity.options.length; i++) {
-      capacity.options[i].setAttribute('hidden', 'hidden');
+    for (var i = 0; i < formCapacity.options.length; i++) {
+      formCapacity.options[i].setAttribute('hidden', 'hidden');
     }
   }
   function resetCapacity() {
-    for (var i = 0; i < capacity.options.length; i++) {
-      capacity.options[i].removeAttribute('hidden');
+    for (var i = 0; i < formCapacity.options.length; i++) {
+      formCapacity.options[i].removeAttribute('hidden');
     }
   }
 
@@ -89,7 +89,7 @@
 
   var formSubmit = noticeForm.querySelector('.form__submit');
 
-  function formSubmitReset() {
+  function resetFormSubmit() {
     formSubmit.removeAttribute('disabled');
     formSubmit.style.backgroundColor = 'white';
     formSubmit.style.color = 'black';
@@ -107,16 +107,16 @@
     formSubmit.setAttribute('disabled', 'disabled');
     noticeForm.reset();
     noticeForm.addEventListener('input', function () {
-      formSubmitReset();
+      resetFormSubmit();
     });
-    capacity.value = roomNumber.value;
+    formCapacity.value = formRoomNumber.value;
     if (nodeError) {
       noticeForm.removeChild(nodeError);
     }
   }
 
   noticeForm.addEventListener('submit', function (event) {
-    window.backend.save(new FormData(noticeForm), postForm, window.postFormError);
+    window.backend.save(new FormData(noticeForm), postForm, window.showPostFormError);
     event.preventDefault();
   });
 })();
