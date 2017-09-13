@@ -99,16 +99,15 @@
     } else {
       event.target.style.border = '';
     }
+    if (formSubmit.hasAttribute('disabled')) {
+      formSubmit.removeAttribute('disabled');
+      formSubmit.style.backgroundColor = 'white';
+      formSubmit.style.color = 'black';
+      formSubmit.textContent = 'Опубликовать';
+    }
   }
 
   var formSubmit = noticeForm.querySelector('.form__submit');
-
-  function formResetHandler() {
-    formSubmit.removeAttribute('disabled');
-    formSubmit.style.backgroundColor = 'white';
-    formSubmit.style.color = 'black';
-    formSubmit.innerText = 'Опубликовать';
-  }
 
   function postForm() {
     noticeForm.elements.address.style.border = '';
@@ -119,7 +118,6 @@
     formSubmit.style.backgroundColor = '#ffaa99';
     formSubmit.setAttribute('disabled', 'disabled');
     noticeForm.reset();
-    noticeForm.addEventListener('input', formResetHandler);
     formCapacity.value = formRoomNumber.value;
   }
 
