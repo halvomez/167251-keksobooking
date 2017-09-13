@@ -40,6 +40,8 @@
 
   var formRoomNumber = noticeForm.querySelector('#room_number');
   var formCapacity = noticeForm.querySelector('#capacity');
+  var formTitle = noticeForm.querySelector('#title');
+
   formCapacity.value = formRoomNumber.value;
 
   hideCapacity();
@@ -78,6 +80,18 @@
 
   noticeForm.addEventListener('input', submitClickHandler, true);
   noticeForm.addEventListener('invalid', submitClickHandler, true);
+
+
+  // Проверка для Edge (minlenght не поддерживается)
+  var titleMinLenght = 30;
+  formTitle.addEventListener('input', function () {
+    if (formTitle.value.length < 30) {
+      formTitle.setCustomValidity('Должно быть не менее ' + titleMinLenght + ' символов');
+    } else {
+      formTitle.setCustomValidity('');
+      formTitle.style.border = '';
+    }
+  });
 
   function submitClickHandler(event) {
     if (!event.target.validity.valid) {
