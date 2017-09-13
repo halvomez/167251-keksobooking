@@ -78,8 +78,8 @@
     }
   }
 
-  noticeForm.addEventListener('input', submitClickHandler, true);
-  noticeForm.addEventListener('invalid', submitClickHandler, true);
+  noticeForm.addEventListener('input', inputValidityHandler, true);
+  noticeForm.addEventListener('invalid', inputValidityHandler, true);
 
 
   // Проверка для Edge (minlenght не поддерживается)
@@ -93,7 +93,7 @@
     }
   });
 
-  function submitClickHandler(event) {
+  function inputValidityHandler(event) {
     if (!event.target.validity.valid) {
       event.target.style.border = '2px solid red';
     } else {
