@@ -70,6 +70,9 @@
   noticeForm.elements.address.setAttribute('placeholder', 'Переместите метку на карте');
   var pinMain = document.querySelector('.pin__main');
 
+  var formAddress = noticeForm.elements.address;
+  formAddress.value = 'x: ' + (pinMain.offsetLeft + PIN_MAIN_WIDTH / 2) + ', y: ' + (pinMain.offsetTop + PIN_MAIN_HEIGHT);
+
   pinMain.addEventListener('mousedown', function (event) {
     event.preventDefault();
     var startCoords = {
@@ -96,7 +99,6 @@
       pinMain.style.top = pinMainY + 'px';
       pinMain.style.left = pinMainX + 'px';
 
-      var formAddress = noticeForm.elements.address;
       formAddress.value = 'x: ' + (pinMainX + PIN_MAIN_WIDTH / 2) + ', y: ' + (pinMainY + PIN_MAIN_HEIGHT);
     }
 
