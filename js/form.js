@@ -17,8 +17,8 @@
   noticeForm.elements.price.setAttribute('max', '1000000');
   noticeForm.setAttribute('action', 'https://1510.dump.academy/keksobooking');
 
-  var timeIn = document.querySelector('#timein');
-  var timeOut = document.querySelector('#timeout');
+  var timeIn = noticeForm.querySelector('#timein');
+  var timeOut = noticeForm.querySelector('#timeout');
 
   function syncValues(element, value) {
     element.value = value;
@@ -33,13 +33,13 @@
   window.synchronizeField(timeOut, timeIn, ['12:00', '13:00', '14:00'], ['12:00', '13:00', '14:00'], syncValues);
 
 
-  var formType = document.querySelector('#type');
-  var formPrice = document.querySelector('#price');
+  var formType = noticeForm.querySelector('#type');
+  var formPrice = noticeForm.querySelector('#price');
 
   window.synchronizeField(formType, formPrice, ['flat', 'house', 'bungalo', 'palace'], [1000, 5000, 0, 10000], syncValuesWithMin);
 
-  var formRoomNumber = document.querySelector('#room_number');
-  var formCapacity = document.querySelector('#capacity');
+  var formRoomNumber = noticeForm.querySelector('#room_number');
+  var formCapacity = noticeForm.querySelector('#capacity');
   formCapacity.value = formRoomNumber.value;
 
   hideCapacity();
