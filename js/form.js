@@ -96,7 +96,6 @@
     formSubmit.innerText = 'Опубликовать';
   }
 
-  var nodeError = document.createElement('div');
   function postForm() {
     noticeForm.elements.address.style.border = '';
     formSubmit.style.fontSize = '22px';
@@ -110,9 +109,6 @@
       resetFormSubmit();
     });
     formCapacity.value = formRoomNumber.value;
-    if (nodeError) {
-      noticeForm.removeChild(nodeError);
-    }
   }
 
   noticeForm.addEventListener('submit', function (event) {
