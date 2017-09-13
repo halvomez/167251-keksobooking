@@ -114,7 +114,7 @@
     formSubmit.style.fontSize = '22px';
     formSubmit.style.color = 'white';
     formSubmit.style.backgroundColor = 'darker';
-    formSubmit.innerText = 'Опубликовано';
+    formSubmit.textContent = 'Опубликовано';
     formSubmit.style.backgroundColor = '#ffaa99';
     formSubmit.setAttribute('disabled', 'disabled');
     noticeForm.reset();
