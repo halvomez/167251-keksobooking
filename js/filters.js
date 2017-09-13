@@ -129,7 +129,7 @@
   var indexFeature;
   var someFeatures = [];
 
-  mapFeatures.forEach(function (feature) {
+  [].forEach.call(mapFeatures, function (feature) {
     feature.addEventListener('click', function (event) {
       featureValue = event.target.value;
       indexFeature = someFeatures.indexOf(featureValue);
