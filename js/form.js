@@ -12,7 +12,7 @@
 
   noticeForm.elements.price.setAttribute('required', 'required');
   noticeForm.elements.price.setAttribute('type', 'number');
-  noticeForm.elements.price.setAttribute('value', '1000');
+  noticeForm.elements.price.setAttribute('placeholder', '1000');
   noticeForm.elements.price.setAttribute('min', '1000');
   noticeForm.elements.price.setAttribute('max', '1000000');
   noticeForm.setAttribute('action', 'https://1510.dump.academy/keksobooking');
