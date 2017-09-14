@@ -56,6 +56,8 @@
     '<img src="' + advertData[numberOfAdvert].author.avatar + '" alt="Avatar" width="70" height="70">' +
     '<a href="#" class="dialog__close"><img src="img/close.svg" alt="close" width="22" height="22"></a>' + '</div>';
   }
-  window.showCard = showCard;
-  window.getData = getData;
+  window.workWithData = {
+    showCard: showCard,
+    getData: getData
+  };
 })();

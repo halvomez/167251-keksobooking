@@ -19,7 +19,7 @@
       pinClicked = event.currentTarget;
       for (i = 0; i < pinsAll.length; i++) {
         if (pinClicked.classList.contains('pin--' + i)) {
-          window.showCard(i);
+          window.workWithData.showCard(i);
         }
       }
       pinClicked.classList.add('pin--active');

@@ -8,9 +8,9 @@
   var pins = [];
   var startPins = [];
 
-  window.backend.load(getData);
+  window.backend.load(checkData);
 
-  function getData(serverData) {
+  function checkData(serverData) {
     if (typeof serverData === 'object') {
       pins = serverData;
       getStartPins();
@@ -91,7 +91,7 @@
     } if (someFeatures.length > 0) {
       renderPinsFeature(someFeatures);
     }
-    window.getData(pinsFiltered);
+    window.workWithData.getData(pinsFiltered);
     window.addPins(pinsFiltered);
     window.activatePin();
   }
